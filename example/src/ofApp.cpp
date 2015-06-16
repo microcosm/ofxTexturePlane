@@ -9,7 +9,7 @@ void ofApp::update(){
 }
 
 void ofApp::draw(){
-
+    plane.draw();
 }
 
 void ofApp::keyPressed(int key){
