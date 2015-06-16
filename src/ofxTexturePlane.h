@@ -17,6 +17,8 @@ protected:
     void setInitialOffset();
     bool imageIsTallerThanWide();
     float calculateFraction();
+    float calculateTextureSizeX();
+    float calculateTextureSizeY();
     float smallestDimension();
     float largestDimension();
     ofImage image;
