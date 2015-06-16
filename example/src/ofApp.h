@@ -22,4 +22,5 @@ public:
 
     ofxTexturePlane seamlessPlane1, buildingPlane1, landscapePlane1;
     ofxTexturePlane seamlessPlane2, buildingPlane2, landscapePlane2;
+    ofxTexturePlane seamlessPlane3, buildingPlane3, landscapePlane3;
 };
