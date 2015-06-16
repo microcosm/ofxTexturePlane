@@ -11,6 +11,7 @@ public:
     void setOffsetX(float offsetX);
     void setOffsetY(float offsetY);
 protected:
+    void setInitialOffset();
     bool imageIsTallerThanWide();
     float calculateFraction();
     float smallestDimension();

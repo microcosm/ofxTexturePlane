@@ -12,8 +12,7 @@ void ofxTexturePlane::setup(string filename, int width, int height){
     plane.set(width, height);
     plane.setPosition(width * 0.5, height * 0.5, 0);
     plane.setResolution(2, 2);
-    setOffsetX(0);
-    setOffsetY(0);
+    setInitialOffset();
 }
 
 void ofxTexturePlane::draw() {
@@ -32,6 +31,16 @@ void ofxTexturePlane::setOffsetX(float offsetX) {
 void ofxTexturePlane::setOffsetY(float offsetY) {
     ty0 = offsetY;
     ty1 = ty0 + (imageIsTallerThanWide() ? calculateFraction() : 1);
+}
+
+void ofxTexturePlane::setInitialOffset() {
+    if(imageIsTallerThanWide()) {
+        setOffsetX(1);
+        setOffsetY(-calculateFraction());
+    } else {
+        setOffsetX(-calculateFraction());
+        setOffsetY(1);
+    }
 }
 
 bool ofxTexturePlane::imageIsTallerThanWide() {
