@@ -79,3 +79,19 @@ float ofxTexturePlane::smallestImageDimension() {
 float ofxTexturePlane::largestImageDimension() {
     return imageIsTallerThanWide() ? image.getHeight() : image.getWidth();
 }
+
+bool ofxTexturePlane::planeIsTallerThanWide() {
+    return plane.getHeight() > plane.getWidth();
+}
+
+float ofxTexturePlane::calculatePlaneFraction() {
+    return smallestPlaneDimension() / largestPlaneDimension();
+}
+
+float ofxTexturePlane::smallestPlaneDimension() {
+    return planeIsTallerThanWide() ? plane.getWidth() : plane.getHeight();
+}
+
+float ofxTexturePlane::largestPlaneDimension() {
+    return planeIsTallerThanWide() ? plane.getHeight() : plane.getWidth();
+}

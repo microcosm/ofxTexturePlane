@@ -23,6 +23,11 @@ protected:
     float smallestImageDimension();
     float largestImageDimension();
 
+    bool planeIsTallerThanWide();
+    float calculatePlaneFraction();
+    float smallestPlaneDimension();
+    float largestPlaneDimension();
+
     ofImage image;
     ofTexture texture;
     ofPlanePrimitive plane;
