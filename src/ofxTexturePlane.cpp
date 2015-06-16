@@ -30,12 +30,12 @@ void ofxTexturePlane::draw() {
 
 void ofxTexturePlane::setOffsetX(float offsetX) {
     tx0 = offsetX;
-    tx1 = tx0 + calculateTextureSizeX();
+    setOffsetTextureSizeX();
 }
 
 void ofxTexturePlane::setOffsetY(float offsetY) {
     ty0 = offsetY;
-    ty1 = ty0 + calculateTextureSizeY();
+    setOffsetTextureSizeY();
 }
 
 void ofxTexturePlane::incrementOffsetX(float amount) {
@@ -49,6 +49,14 @@ void ofxTexturePlane::incrementOffsetY(float amount) {
 void ofxTexturePlane::setInitialOffset() {
     setOffsetX(-calculateTextureSizeX());
     setOffsetY(-calculateTextureSizeY());
+}
+
+void ofxTexturePlane::setOffsetTextureSizeX() {
+    tx1 = tx0 + calculateTextureSizeX();
+}
+
+void ofxTexturePlane::setOffsetTextureSizeY() {
+    ty1 = ty0 + calculateTextureSizeY();
 }
 
 float ofxTexturePlane::calculateTextureSizeX() {

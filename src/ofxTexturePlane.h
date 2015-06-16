@@ -15,6 +15,8 @@ public:
     void incrementOffsetY(float amount);
 protected:
     void setInitialOffset();
+    void setOffsetTextureSizeX();
+    void setOffsetTextureSizeY();
     float calculateTextureSizeX();
     float calculateTextureSizeY();
 
