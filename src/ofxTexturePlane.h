@@ -7,6 +7,7 @@ class ofxTexturePlane  : public ofBaseApp{
 public:
     void setup(string filename);
     void setup(string filename, int width, int height);
+    void draw(int x, int y);
     void draw();
     void setOffsetX(float offsetX);
     void setOffsetY(float offsetY);

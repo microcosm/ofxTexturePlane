@@ -1,9 +1,9 @@
 #include "ofApp.h"
 
 void ofApp::setup(){
-    //plane.setup("seamless.jpg");
-    plane.setup("building.png");
-    //plane.setup("landscape.png");
+    seamlessPlane.setup("seamless.jpg", 200, 200);
+    buildingPlane.setup("building.png", 200, 200);
+    landscapePlane.setup("landscape.png", 200, 200);
 }
 
 void ofApp::update(){
@@ -11,7 +11,9 @@ void ofApp::update(){
 }
 
 void ofApp::draw(){
-    plane.draw();
+    seamlessPlane.draw(20, 20);
+    buildingPlane.draw(240, 20);
+    landscapePlane.draw(460, 20);
 }
 
 void ofApp::keyPressed(int key){

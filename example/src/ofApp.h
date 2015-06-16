@@ -20,5 +20,5 @@ public:
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
 
-    ofxTexturePlane plane;
+    ofxTexturePlane seamlessPlane, buildingPlane, landscapePlane;
 };

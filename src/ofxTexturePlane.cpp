@@ -15,6 +15,11 @@ void ofxTexturePlane::setup(string filename, int width, int height){
     setInitialOffset();
 }
 
+void ofxTexturePlane::draw(int x, int y) {
+    plane.setPosition(x + plane.getWidth() * 0.5, y + plane.getHeight() * 0.5, 0);
+    draw();
+}
+
 void ofxTexturePlane::draw() {
     plane.mapTexCoords(tx0, ty0, tx1, ty1);
     plane.mapTexCoords(tx1, ty1, tx0, ty0);
