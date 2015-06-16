@@ -57,11 +57,15 @@ void ofxTexturePlane::setInitialOffset() {
 }
 
 float ofxTexturePlane::calculateTextureSizeX() {
-    tx1 = tx0 + (imageIsTallerThanWide() ? 1 : calculateImageFraction());
+    adjustment =  imageIsTallerThanWide() ? 1 : calculateImageFraction();
+    adjustment *= planeIsTallerThanWide() ? calculatePlaneFraction() : 1;
+    tx1 = tx0 + adjustment;
 }
 
 float ofxTexturePlane::calculateTextureSizeY() {
-    ty1 = ty0 + (imageIsTallerThanWide() ? calculateImageFraction() : 1);
+    adjustment =  imageIsTallerThanWide() ? calculateImageFraction() : 1;
+    adjustment *= planeIsTallerThanWide() ? 1 : calculatePlaneFraction();
+    ty1 = ty0 + adjustment;
 }
 
 bool ofxTexturePlane::imageIsTallerThanWide() {
