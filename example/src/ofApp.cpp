@@ -1,7 +1,9 @@
 #include "ofApp.h"
 
 void ofApp::setup(){
-    plane.setup("seamless.jpg");
+    //plane.setup("seamless.jpg");
+    plane.setup("building.png");
+    //plane.setup("landscape.png");
 }
 
 void ofApp::update(){

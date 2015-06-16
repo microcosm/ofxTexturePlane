@@ -11,6 +11,10 @@ public:
     void setOffsetX(float offsetX);
     void setOffsetY(float offsetY);
 protected:
+    bool imageIsTallerThanWide();
+    float calculateFraction();
+    float smallestDimension();
+    float largestDimension();
     ofImage image;
     ofTexture texture;
     ofPlanePrimitive plane;

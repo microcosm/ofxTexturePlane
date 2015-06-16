@@ -26,8 +26,26 @@ void ofxTexturePlane::draw() {
 
 void ofxTexturePlane::setOffsetX(float offsetX) {
     tx0 = offsetX;
+    tx1 = tx0 + (imageIsTallerThanWide() ? 1 : calculateFraction());
 }
 
 void ofxTexturePlane::setOffsetY(float offsetY) {
     ty0 = offsetY;
+    ty1 = ty0 + (imageIsTallerThanWide() ? calculateFraction() : 1);
+}
+
+bool ofxTexturePlane::imageIsTallerThanWide() {
+    return image.getHeight() > image.getWidth();
+}
+
+float ofxTexturePlane::calculateFraction() {
+    return smallestDimension() / largestDimension();
+}
+
+float ofxTexturePlane::smallestDimension() {
+    return imageIsTallerThanWide() ? image.getWidth() : image.getHeight();
+}
+
+float ofxTexturePlane::largestDimension() {
+    return imageIsTallerThanWide() ? image.getHeight() : image.getWidth();
 }
