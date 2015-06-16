@@ -15,12 +15,14 @@ public:
     void incrementOffsetY(float amount);
 protected:
     void setInitialOffset();
-    bool imageIsTallerThanWide();
-    float calculateFraction();
     float calculateTextureSizeX();
     float calculateTextureSizeY();
-    float smallestDimension();
-    float largestDimension();
+
+    bool imageIsTallerThanWide();
+    float calculateImageFraction();
+    float smallestImageDimension();
+    float largestImageDimension();
+
     ofImage image;
     ofTexture texture;
     ofPlanePrimitive plane;
