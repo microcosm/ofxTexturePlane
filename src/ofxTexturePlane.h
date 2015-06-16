@@ -11,6 +11,8 @@ public:
     void draw();
     void setOffsetX(float offsetX);
     void setOffsetY(float offsetY);
+    void incrementOffsetX(float amount);
+    void incrementOffsetY(float amount);
 protected:
     void setInitialOffset();
     bool imageIsTallerThanWide();

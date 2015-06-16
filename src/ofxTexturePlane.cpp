@@ -38,6 +38,14 @@ void ofxTexturePlane::setOffsetY(float offsetY) {
     ty1 = ty0 + (imageIsTallerThanWide() ? calculateFraction() : 1);
 }
 
+void ofxTexturePlane::incrementOffsetX(float amount) {
+    setOffsetX(tx0 + amount);
+}
+
+void ofxTexturePlane::incrementOffsetY(float amount) {
+    setOffsetY(ty0 + amount);
+}
+
 void ofxTexturePlane::setInitialOffset() {
     if(imageIsTallerThanWide()) {
         setOffsetX(1);
