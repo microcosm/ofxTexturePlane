@@ -32,5 +32,4 @@ protected:
     ofTexture texture;
     ofPlanePrimitive plane;
     float tx0, ty0, tx1, ty1;
-    float adjustment;
 };

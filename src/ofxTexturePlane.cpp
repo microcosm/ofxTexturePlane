@@ -30,12 +30,12 @@ void ofxTexturePlane::draw() {
 
 void ofxTexturePlane::setOffsetX(float offsetX) {
     tx0 = offsetX;
-    calculateTextureSizeX();
+    tx1 = tx0 + calculateTextureSizeX();
 }
 
 void ofxTexturePlane::setOffsetY(float offsetY) {
     ty0 = offsetY;
-    calculateTextureSizeY();
+    ty1 = ty0 + calculateTextureSizeY();
 }
 
 void ofxTexturePlane::incrementOffsetX(float amount) {
@@ -47,25 +47,18 @@ void ofxTexturePlane::incrementOffsetY(float amount) {
 }
 
 void ofxTexturePlane::setInitialOffset() {
-    if(imageIsTallerThanWide()) {
-        setOffsetX(1);
-        setOffsetY(-calculateImageFraction());
-    } else {
-        setOffsetX(-calculateImageFraction());
-        setOffsetY(1);
-    }
+    setOffsetX(-calculateTextureSizeX());
+    setOffsetY(-calculateTextureSizeY());
 }
 
 float ofxTexturePlane::calculateTextureSizeX() {
-    adjustment =  imageIsTallerThanWide() ? 1 : calculateImageFraction();
-    adjustment *= planeIsTallerThanWide() ? calculatePlaneFraction() : 1;
-    tx1 = tx0 + adjustment;
+    return (imageIsTallerThanWide() ? 1 : calculateImageFraction()) *
+           (planeIsTallerThanWide() ? calculatePlaneFraction() : 1);
 }
 
 float ofxTexturePlane::calculateTextureSizeY() {
-    adjustment =  imageIsTallerThanWide() ? calculateImageFraction() : 1;
-    adjustment *= planeIsTallerThanWide() ? 1 : calculatePlaneFraction();
-    ty1 = ty0 + adjustment;
+    return (imageIsTallerThanWide() ? calculateImageFraction() : 1) *
+           (planeIsTallerThanWide() ? 1 : calculatePlaneFraction());
 }
 
 bool ofxTexturePlane::imageIsTallerThanWide() {
