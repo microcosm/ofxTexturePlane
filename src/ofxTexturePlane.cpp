@@ -11,8 +11,8 @@ void ofxTexturePlane::setup(string filename, int width, int height) {
     texture.setTextureWrap(GL_MIRRORED_REPEAT, GL_MIRRORED_REPEAT);
     plane.setResolution(2, 2);
     setPlaneSize(width, height, false);
+    setTextureScale(1, false);
     setInitialTextureOffset();
-    setTextureScale(1);
 }
 
 void ofxTexturePlane::draw(int x, int y) {
@@ -45,10 +45,12 @@ void ofxTexturePlane::setPlaneHeight(int height) {
     setPlaneSize(plane.getWidth(), height);
 }
 
-void ofxTexturePlane::setTextureScale(float _scale) {
+void ofxTexturePlane::setTextureScale(float _scale, bool calculateTextureSizes) {
     scale = _scale;
-    setOffsetTextureSizeX();
-    setOffsetTextureSizeY();
+    if(calculateTextureSizes) {
+        setOffsetTextureSizeX();
+        setOffsetTextureSizeY();
+    }
 }
 
 void ofxTexturePlane::setTextureOffsetX(float offsetX) {
@@ -75,11 +77,11 @@ void ofxTexturePlane::setInitialTextureOffset() {
 }
 
 void ofxTexturePlane::setOffsetTextureSizeX() {
-    tx1 = tx0 + calculateTextureSizeX() / scale;
+    tx1 = tx0 + (calculateTextureSizeX() / scale);
 }
 
 void ofxTexturePlane::setOffsetTextureSizeY() {
-    ty1 = ty0 + calculateTextureSizeY() / scale;
+    ty1 = ty0 + (calculateTextureSizeY() / scale);
 }
 
 float ofxTexturePlane::calculateTextureSizeX() {
