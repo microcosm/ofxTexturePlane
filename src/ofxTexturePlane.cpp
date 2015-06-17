@@ -1,17 +1,16 @@
 #include "ofxTexturePlane.h"
 
-void ofxTexturePlane::setup(string filename){
+void ofxTexturePlane::setup(string filename) {
     setup(filename, ofGetWidth(), ofGetHeight());
 }
 
-void ofxTexturePlane::setup(string filename, int width, int height){
+void ofxTexturePlane::setup(string filename, int width, int height) {
     ofDisableArbTex();
     image.loadImage(filename);
     texture = image.getTextureReference();
     texture.setTextureWrap(GL_MIRRORED_REPEAT, GL_MIRRORED_REPEAT);
-    plane.set(width, height);
-    plane.setPosition(width * 0.5, height * 0.5, 0);
     plane.setResolution(2, 2);
+    setSize(width, height, false);
     setInitialOffset();
 }
 
@@ -26,6 +25,23 @@ void ofxTexturePlane::draw() {
     texture.bind();
     plane.draw();
     texture.unbind();
+}
+
+void ofxTexturePlane::setSize(int width, int height, bool calculateTextureSizes) {
+    plane.set(width, height);
+    plane.setPosition(width * 0.5, height * 0.5, 0);
+    if(calculateTextureSizes) {
+        setOffsetTextureSizeX();
+        setOffsetTextureSizeY();
+    }
+}
+
+void ofxTexturePlane::setWidth(int width) {
+    setSize(width, plane.getHeight());
+}
+
+void ofxTexturePlane::setHeight(int height) {
+    setSize(plane.getWidth(), height);
 }
 
 void ofxTexturePlane::setOffsetX(float offsetX) {

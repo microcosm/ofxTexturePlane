@@ -9,6 +9,9 @@ public:
     void setup(string filename, int width, int height);
     void draw(int x, int y);
     void draw();
+    void setSize(int width, int height, bool calculateTextureSizes=true);
+    void setWidth(int width);
+    void setHeight(int height);
     void setOffsetX(float offsetX);
     void setOffsetY(float offsetY);
     void incrementOffsetX(float amount);
