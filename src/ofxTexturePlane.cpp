@@ -10,7 +10,8 @@ void ofxTexturePlane::setup(string filename, int width, int height) {
     texture = image.getTextureReference();
     texture.setTextureWrap(GL_MIRRORED_REPEAT, GL_MIRRORED_REPEAT);
     plane.setResolution(2, 2);
-    setPlaneSize(width, height, false);
+    plane.set(width, height);
+    plane.setPosition(width * 0.5, height * 0.5, 0);
     setTextureScale(1, false);
     setInitialTextureOffset();
 }
@@ -28,13 +29,11 @@ void ofxTexturePlane::draw() {
     texture.unbind();
 }
 
-void ofxTexturePlane::setPlaneSize(int width, int height, bool calculateTextureSizes) {
+void ofxTexturePlane::setPlaneSize(int width, int height) {
     plane.set(width, height);
-    plane.setPosition(width * 0.5, height * 0.5, 0);
-    if(calculateTextureSizes) {
-        setOffsetTextureSizeX();
-        setOffsetTextureSizeY();
-    }
+    setPlanePosition(plane.getPosition().x, plane.getPosition().y);
+    setOffsetTextureSizeX();
+    setOffsetTextureSizeY();
 }
 
 void ofxTexturePlane::setPlaneWidth(int width) {
@@ -46,7 +45,7 @@ void ofxTexturePlane::setPlaneHeight(int height) {
 }
 
 void ofxTexturePlane::setPlanePosition(int x, int y) {
-    plane.setPosition(x + plane.getWidth() * 0.5, y + plane.getHeight() * 0.5, 0);
+    plane.setPosition(x + plane.getWidth() * 0.5, y + plane.getHeight() * 0.5, plane.getPosition().z);
 }
 
 void ofxTexturePlane::setTextureScale(float _scale, bool calculateTextureSizes) {

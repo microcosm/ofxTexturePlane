@@ -10,7 +10,7 @@ public:
     void draw(int x, int y);
     void draw();
 
-    void setPlaneSize(int width, int height, bool calculateTextureSizes=true);
+    void setPlaneSize(int width, int height);
     void setPlaneWidth(int width);
     void setPlaneHeight(int height);
     void setPlanePosition(int x, int y);
