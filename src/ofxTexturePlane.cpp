@@ -16,7 +16,7 @@ void ofxTexturePlane::setup(string filename, int width, int height) {
 }
 
 void ofxTexturePlane::draw(int x, int y) {
-    plane.setPosition(x + plane.getWidth() * 0.5, y + plane.getHeight() * 0.5, 0);
+    setPlanePosition(x, y);
     draw();
 }
 
@@ -43,6 +43,10 @@ void ofxTexturePlane::setPlaneWidth(int width) {
 
 void ofxTexturePlane::setPlaneHeight(int height) {
     setPlaneSize(plane.getWidth(), height);
+}
+
+void ofxTexturePlane::setPlanePosition(int x, int y) {
+    plane.setPosition(x + plane.getWidth() * 0.5, y + plane.getHeight() * 0.5, 0);
 }
 
 void ofxTexturePlane::setTextureScale(float _scale, bool calculateTextureSizes) {

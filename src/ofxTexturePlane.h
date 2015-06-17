@@ -13,6 +13,7 @@ public:
     void setPlaneSize(int width, int height, bool calculateTextureSizes=true);
     void setPlaneWidth(int width);
     void setPlaneHeight(int height);
+    void setPlanePosition(int x, int y);
 
     void setTextureScale(float scale, bool calculateTextureSizes=true);
     void setTextureOffsetX(float offsetX);
