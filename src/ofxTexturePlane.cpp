@@ -10,8 +10,8 @@ void ofxTexturePlane::setup(string filename, int width, int height) {
     texture = image.getTextureReference();
     texture.setTextureWrap(GL_MIRRORED_REPEAT, GL_MIRRORED_REPEAT);
     plane.setResolution(2, 2);
-    setSize(width, height, false);
-    setInitialOffset();
+    setPlaneSize(width, height, false);
+    setInitialTextureOffset();
 }
 
 void ofxTexturePlane::draw(int x, int y) {
@@ -27,7 +27,7 @@ void ofxTexturePlane::draw() {
     texture.unbind();
 }
 
-void ofxTexturePlane::setSize(int width, int height, bool calculateTextureSizes) {
+void ofxTexturePlane::setPlaneSize(int width, int height, bool calculateTextureSizes) {
     plane.set(width, height);
     plane.setPosition(width * 0.5, height * 0.5, 0);
     if(calculateTextureSizes) {
@@ -36,35 +36,35 @@ void ofxTexturePlane::setSize(int width, int height, bool calculateTextureSizes)
     }
 }
 
-void ofxTexturePlane::setWidth(int width) {
-    setSize(width, plane.getHeight());
+void ofxTexturePlane::setPlaneWidth(int width) {
+    setPlaneSize(width, plane.getHeight());
 }
 
-void ofxTexturePlane::setHeight(int height) {
-    setSize(plane.getWidth(), height);
+void ofxTexturePlane::setPlaneHeight(int height) {
+    setPlaneSize(plane.getWidth(), height);
 }
 
-void ofxTexturePlane::setOffsetX(float offsetX) {
+void ofxTexturePlane::setTextureOffsetX(float offsetX) {
     tx0 = offsetX;
     setOffsetTextureSizeX();
 }
 
-void ofxTexturePlane::setOffsetY(float offsetY) {
+void ofxTexturePlane::setTextureOffsetY(float offsetY) {
     ty0 = offsetY;
     setOffsetTextureSizeY();
 }
 
-void ofxTexturePlane::incrementOffsetX(float amount) {
-    setOffsetX(tx0 + amount);
+void ofxTexturePlane::incrementTextureOffsetX(float amount) {
+    setTextureOffsetX(tx0 + amount);
 }
 
-void ofxTexturePlane::incrementOffsetY(float amount) {
-    setOffsetY(ty0 + amount);
+void ofxTexturePlane::incrementTextureOffsetY(float amount) {
+    setTextureOffsetY(ty0 + amount);
 }
 
-void ofxTexturePlane::setInitialOffset() {
-    setOffsetX(-calculateTextureSizeX());
-    setOffsetY(-calculateTextureSizeY());
+void ofxTexturePlane::setInitialTextureOffset() {
+    setTextureOffsetX(-calculateTextureSizeX());
+    setTextureOffsetY(-calculateTextureSizeY());
 }
 
 void ofxTexturePlane::setOffsetTextureSizeX() {

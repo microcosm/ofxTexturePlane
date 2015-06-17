@@ -22,20 +22,20 @@ void ofApp::setup(){
 }
 
 void ofApp::update(){
-    seamlessPlane1.incrementOffsetX(0.001);
-    buildingPlane1.incrementOffsetY(0.001);
-    landscapePlane1.incrementOffsetX(0.001);
+    seamlessPlane1.incrementTextureOffsetX(0.001);
+    buildingPlane1.incrementTextureOffsetY(0.001);
+    landscapePlane1.incrementTextureOffsetX(0.001);
     
-    seamlessPlane2.setOffsetX(mouseX * 0.001);
-    seamlessPlane2.setOffsetY(mouseY * 0.001);
-    buildingPlane2.setOffsetX(mouseX * 0.001);
-    buildingPlane2.setOffsetY(mouseY * 0.001);
-    landscapePlane2.setOffsetX(mouseX * 0.001);
-    landscapePlane2.setOffsetY(mouseY * 0.001);
+    seamlessPlane2.setTextureOffsetX(mouseX * 0.001);
+    seamlessPlane2.setTextureOffsetY(mouseY * 0.001);
+    buildingPlane2.setTextureOffsetX(mouseX * 0.001);
+    buildingPlane2.setTextureOffsetY(mouseY * 0.001);
+    landscapePlane2.setTextureOffsetX(mouseX * 0.001);
+    landscapePlane2.setTextureOffsetY(mouseY * 0.001);
     
-    seamlessPlane3.incrementOffsetX(-0.001);
-    buildingPlane3.incrementOffsetY(-0.001);
-    landscapePlane3.incrementOffsetX(-0.001);
+    seamlessPlane3.incrementTextureOffsetX(-0.001);
+    buildingPlane3.incrementTextureOffsetY(-0.001);
+    landscapePlane3.incrementTextureOffsetX(-0.001);
 }
 
 void ofApp::draw(){

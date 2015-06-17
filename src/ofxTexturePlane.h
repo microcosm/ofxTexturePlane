@@ -9,15 +9,15 @@ public:
     void setup(string filename, int width, int height);
     void draw(int x, int y);
     void draw();
-    void setSize(int width, int height, bool calculateTextureSizes=true);
-    void setWidth(int width);
-    void setHeight(int height);
-    void setOffsetX(float offsetX);
-    void setOffsetY(float offsetY);
-    void incrementOffsetX(float amount);
-    void incrementOffsetY(float amount);
+    void setPlaneSize(int width, int height, bool calculateTextureSizes=true);
+    void setPlaneWidth(int width);
+    void setPlaneHeight(int height);
+    void setTextureOffsetX(float offsetX);
+    void setTextureOffsetY(float offsetY);
+    void incrementTextureOffsetX(float amount);
+    void incrementTextureOffsetY(float amount);
 protected:
-    void setInitialOffset();
+    void setInitialTextureOffset();
     void setOffsetTextureSizeX();
     void setOffsetTextureSizeY();
     float calculateTextureSizeX();
