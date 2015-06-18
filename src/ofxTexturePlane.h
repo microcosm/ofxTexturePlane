@@ -32,6 +32,7 @@ public:
     void setTextureOffset(float offsetX, float offsetY);
     void setTextureOffsetX(float offsetX);
     void setTextureOffsetY(float offsetY);
+    void incrementTextureOffset(float amountX, float amountY);
     void incrementTextureOffsetX(float amount);
     void incrementTextureOffsetY(float amount);
 
