@@ -2,7 +2,19 @@
 
 #include "ofMain.h"
 
-class ofxTexturePlane  : public ofBaseApp{
+enum ofxTexturePlaneOffset {
+    TEXTURE_OFFSET_TOP_LEFT,
+    TEXTURE_OFFSET_TOP_CENTER,
+    TEXTURE_OFFSET_TOP_RIGHT,
+    TEXTURE_OFFSET_MIDDLE_LEFT,
+    TEXTURE_OFFSET_MIDDLE_CENTER,
+    TEXTURE_OFFSET_MIDDLE_RIGHT,
+    TEXTURE_OFFSET_BOTTOM_LEFT,
+    TEXTURE_OFFSET_BOTTOM_CENTER,
+    TEXTURE_OFFSET_BOTTOM_RIGHT
+};
+
+class ofxTexturePlane : public ofBaseApp{
 
 public:
     void setup(string filename, int textureScale=1);
@@ -16,11 +28,11 @@ public:
     void setPlanePosition(int x, int y);
 
     void setTextureScale(float scale, bool calculateTextureSizes=true);
+    void setTextureOffset(ofxTexturePlaneOffset offset);
     void setTextureOffsetX(float offsetX);
     void setTextureOffsetY(float offsetY);
     void incrementTextureOffsetX(float amount);
     void incrementTextureOffsetY(float amount);
-    void setTextureOffsetTopLeft();
 
 protected:
     void setOffsetTextureSizeX();

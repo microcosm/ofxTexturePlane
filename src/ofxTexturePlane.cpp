@@ -13,7 +13,7 @@ void ofxTexturePlane::setup(string filename, int width, int height, int textureS
     plane.set(width, height);
     plane.setPosition(width * 0.5, height * 0.5, 0);
     setTextureScale(textureScale, false);
-    setTextureOffsetTopLeft();
+    setTextureOffset(TEXTURE_OFFSET_TOP_LEFT);
 }
 
 void ofxTexturePlane::draw(int x, int y) {
@@ -56,6 +56,47 @@ void ofxTexturePlane::setTextureScale(float _scale, bool calculateTextureSizes) 
     }
 }
 
+void ofxTexturePlane::setTextureOffset(ofxTexturePlaneOffset offset) {
+    switch(offset){
+        case TEXTURE_OFFSET_TOP_LEFT:
+            setTextureOffsetX(-calculateTextureSizeX() / scale);
+            setTextureOffsetY(-calculateTextureSizeY() / scale);
+            break;
+        case TEXTURE_OFFSET_TOP_CENTER:
+            setTextureOffsetX((-calculateTextureSizeX() / scale) * 1.5);
+            setTextureOffsetY(-calculateTextureSizeY() / scale);
+            break;
+        case TEXTURE_OFFSET_TOP_RIGHT:
+            setTextureOffsetX((-calculateTextureSizeX() / scale) * 2);
+            setTextureOffsetY(-calculateTextureSizeY() / scale);
+            break;
+        case TEXTURE_OFFSET_MIDDLE_LEFT:
+            setTextureOffsetX(-calculateTextureSizeX() / scale);
+            setTextureOffsetY((-calculateTextureSizeY() / scale) * 1.5);
+            break;
+        case TEXTURE_OFFSET_MIDDLE_CENTER:
+            setTextureOffsetX((-calculateTextureSizeX() / scale) * 1.5);
+            setTextureOffsetY((-calculateTextureSizeY() / scale) * 1.5);
+            break;
+        case TEXTURE_OFFSET_MIDDLE_RIGHT:
+            setTextureOffsetX((-calculateTextureSizeX() / scale) * 2);
+            setTextureOffsetY((-calculateTextureSizeY() / scale) * 1.5);
+            break;
+        case TEXTURE_OFFSET_BOTTOM_LEFT:
+            setTextureOffsetX(-calculateTextureSizeX() / scale);
+            setTextureOffsetY((-calculateTextureSizeY() / scale) * 2);
+            break;
+        case TEXTURE_OFFSET_BOTTOM_CENTER:
+            setTextureOffsetX((-calculateTextureSizeX() / scale) * 1.5);
+            setTextureOffsetY((-calculateTextureSizeY() / scale) * 2);
+            break;
+        case TEXTURE_OFFSET_BOTTOM_RIGHT:
+            setTextureOffsetX((-calculateTextureSizeX() / scale) * 2);
+            setTextureOffsetY((-calculateTextureSizeY() / scale) * 2);
+            break;
+    }
+}
+
 void ofxTexturePlane::setTextureOffsetX(float offsetX) {
     tx0 = offsetX;
     setOffsetTextureSizeX();
@@ -72,11 +113,6 @@ void ofxTexturePlane::incrementTextureOffsetX(float amount) {
 
 void ofxTexturePlane::incrementTextureOffsetY(float amount) {
     setTextureOffsetY(ty0 + amount);
-}
-
-void ofxTexturePlane::setTextureOffsetTopLeft() {
-    setTextureOffsetX(-calculateTextureSizeX() / scale);
-    setTextureOffsetY(-calculateTextureSizeY() / scale);
 }
 
 void ofxTexturePlane::setOffsetTextureSizeX() {
