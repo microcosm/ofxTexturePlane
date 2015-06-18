@@ -27,7 +27,6 @@ public:
     void setPlaneHeight(int height);
     void setPlanePosition(int x, int y);
 
-    void setTextureScale(float scale, bool calculateTextureSizes=true);
     void setTextureOffset(ofxTexturePlaneOffset offset);
     void setTextureOffset(float offsetX, float offsetY);
     void setTextureOffsetX(float offsetX);
@@ -35,6 +34,8 @@ public:
     void incrementTextureOffset(float amountX, float amountY);
     void incrementTextureOffsetX(float amount);
     void incrementTextureOffsetY(float amount);
+
+    void setTextureScale(float scale);
 
 protected:
     void setOffsetTextureSizeX();

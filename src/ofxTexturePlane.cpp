@@ -12,7 +12,7 @@ void ofxTexturePlane::setup(string filename, int width, int height, int textureS
     plane.setResolution(2, 2);
     plane.set(width, height);
     plane.setPosition(width * 0.5, height * 0.5, 0);
-    setTextureScale(textureScale, false);
+    scale = textureScale;
     setTextureOffset(offset);
 }
 
@@ -46,14 +46,6 @@ void ofxTexturePlane::setPlaneHeight(int height) {
 
 void ofxTexturePlane::setPlanePosition(int x, int y) {
     plane.setPosition(x + plane.getWidth() * 0.5, y + plane.getHeight() * 0.5, plane.getPosition().z);
-}
-
-void ofxTexturePlane::setTextureScale(float _scale, bool calculateTextureSizes) {
-    scale = _scale;
-    if(calculateTextureSizes) {
-        setOffsetTextureSizeX();
-        setOffsetTextureSizeY();
-    }
 }
 
 void ofxTexturePlane::setTextureOffset(ofxTexturePlaneOffset offset) {
@@ -123,6 +115,12 @@ void ofxTexturePlane::incrementTextureOffsetX(float amount) {
 
 void ofxTexturePlane::incrementTextureOffsetY(float amount) {
     setTextureOffsetY(ty0 + amount);
+}
+
+void ofxTexturePlane::setTextureScale(float _scale) {
+    scale = _scale;
+    setOffsetTextureSizeX();
+    setOffsetTextureSizeY();
 }
 
 void ofxTexturePlane::setOffsetTextureSizeX() {
