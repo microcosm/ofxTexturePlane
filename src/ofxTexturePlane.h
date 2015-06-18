@@ -29,6 +29,7 @@ public:
 
     void setTextureScale(float scale, bool calculateTextureSizes=true);
     void setTextureOffset(ofxTexturePlaneOffset offset);
+    void setTextureOffset(float offsetX, float offsetY);
     void setTextureOffsetX(float offsetX);
     void setTextureOffsetY(float offsetY);
     void incrementTextureOffsetX(float amount);

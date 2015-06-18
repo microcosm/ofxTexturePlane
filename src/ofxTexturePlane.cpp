@@ -97,6 +97,11 @@ void ofxTexturePlane::setTextureOffset(ofxTexturePlaneOffset offset) {
     }
 }
 
+void ofxTexturePlane::setTextureOffset(float offsetX, float offsetY) {
+    setTextureOffsetX(offsetX);
+    setTextureOffsetY(offsetY);
+}
+
 void ofxTexturePlane::setTextureOffsetX(float offsetX) {
     tx0 = offsetX;
     setOffsetTextureSizeX();
