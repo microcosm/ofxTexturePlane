@@ -5,8 +5,8 @@
 class ofxTexturePlane  : public ofBaseApp{
 
 public:
-    void setup(string filename);
-    void setup(string filename, int width, int height);
+    void setup(string filename, int textureScale=1);
+    void setup(string filename, int width, int height, int textureScale=1);
     void draw(int x, int y);
     void draw();
 
