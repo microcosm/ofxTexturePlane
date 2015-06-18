@@ -13,7 +13,7 @@ void ofxTexturePlane::setup(string filename, int width, int height, int textureS
     plane.set(width, height);
     plane.setPosition(width * 0.5, height * 0.5, 0);
     setTextureScale(textureScale, false);
-    setInitialTextureOffset();
+    setTextureOffsetTopLeft();
 }
 
 void ofxTexturePlane::draw(int x, int y) {
@@ -74,7 +74,7 @@ void ofxTexturePlane::incrementTextureOffsetY(float amount) {
     setTextureOffsetY(ty0 + amount);
 }
 
-void ofxTexturePlane::setInitialTextureOffset() {
+void ofxTexturePlane::setTextureOffsetTopLeft() {
     setTextureOffsetX(-calculateTextureSizeX() / scale);
     setTextureOffsetY(-calculateTextureSizeY() / scale);
 }

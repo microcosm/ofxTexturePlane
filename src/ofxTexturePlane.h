@@ -20,9 +20,9 @@ public:
     void setTextureOffsetY(float offsetY);
     void incrementTextureOffsetX(float amount);
     void incrementTextureOffsetY(float amount);
+    void setTextureOffsetTopLeft();
 
 protected:
-    void setInitialTextureOffset();
     void setOffsetTextureSizeX();
     void setOffsetTextureSizeY();
     float calculateTextureSizeX();
