@@ -123,6 +123,10 @@ void ofxTexturePlane::setTextureScale(float _scale) {
     setOffsetTextureSizeY();
 }
 
+void ofxTexturePlane::incrementTextureScale(float amount) {
+    setTextureScale(scale + amount);
+}
+
 void ofxTexturePlane::setOffsetTextureSizeX() {
     tx1 = tx0 + (calculateTextureSizeX() / scale);
 }
