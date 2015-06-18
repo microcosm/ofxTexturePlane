@@ -75,8 +75,8 @@ void ofxTexturePlane::incrementTextureOffsetY(float amount) {
 }
 
 void ofxTexturePlane::setInitialTextureOffset() {
-    setTextureOffsetX(-calculateTextureSizeX());
-    setTextureOffsetY(-calculateTextureSizeY());
+    setTextureOffsetX(-calculateTextureSizeX() / scale);
+    setTextureOffsetY(-calculateTextureSizeY() / scale);
 }
 
 void ofxTexturePlane::setOffsetTextureSizeX() {
