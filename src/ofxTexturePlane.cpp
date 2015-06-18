@@ -1,10 +1,10 @@
 #include "ofxTexturePlane.h"
 
-void ofxTexturePlane::setup(string filename, int textureScale) {
-    setup(filename, ofGetWidth(), ofGetHeight(), textureScale);
+void ofxTexturePlane::setup(string filename, int textureScale, ofxTexturePlaneOffset offset) {
+    setup(filename, ofGetWidth(), ofGetHeight(), textureScale, offset);
 }
 
-void ofxTexturePlane::setup(string filename, int width, int height, int textureScale) {
+void ofxTexturePlane::setup(string filename, int width, int height, int textureScale, ofxTexturePlaneOffset offset) {
     ofDisableArbTex();
     image.loadImage(filename);
     texture = image.getTextureReference();
@@ -13,7 +13,7 @@ void ofxTexturePlane::setup(string filename, int width, int height, int textureS
     plane.set(width, height);
     plane.setPosition(width * 0.5, height * 0.5, 0);
     setTextureScale(textureScale, false);
-    setTextureOffset(TEXTURE_OFFSET_TOP_LEFT);
+    setTextureOffset(offset);
 }
 
 void ofxTexturePlane::draw(int x, int y) {
