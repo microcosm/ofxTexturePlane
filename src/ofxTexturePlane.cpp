@@ -50,39 +50,36 @@ void ofxTexturePlane::setPlanePosition(int x, int y) {
 void ofxTexturePlane::setTextureOffset(ofxTexturePlaneOffset offset) {
     switch(offset){
         case TEXTURE_OFFSET_TOP_LEFT:
+        case TEXTURE_OFFSET_MIDDLE_LEFT:
+        case TEXTURE_OFFSET_BOTTOM_LEFT:
             setTextureOffsetX(0);
-            setTextureOffsetY(0);
             break;
         case TEXTURE_OFFSET_TOP_CENTER:
+        case TEXTURE_OFFSET_MIDDLE_CENTER:
+        case TEXTURE_OFFSET_BOTTOM_CENTER:
             setTextureOffsetX(0.5 - calculateTextureSizeX() * 0.5);
-            setTextureOffsetY(0);
             break;
         case TEXTURE_OFFSET_TOP_RIGHT:
+        case TEXTURE_OFFSET_MIDDLE_RIGHT:
+        case TEXTURE_OFFSET_BOTTOM_RIGHT:
             setTextureOffsetX(1 - calculateTextureSizeX());
+            break;
+    }
+
+    switch(offset){
+        case TEXTURE_OFFSET_TOP_LEFT:
+        case TEXTURE_OFFSET_TOP_CENTER:
+        case TEXTURE_OFFSET_TOP_RIGHT:
             setTextureOffsetY(0);
             break;
         case TEXTURE_OFFSET_MIDDLE_LEFT:
-            setTextureOffsetX(0);
-            setTextureOffsetY(0.5 - calculateTextureSizeY() * 0.5);
-            break;
         case TEXTURE_OFFSET_MIDDLE_CENTER:
-            setTextureOffsetX(0.5 - calculateTextureSizeX() * 0.5);
-            setTextureOffsetY(0.5 - calculateTextureSizeY() * 0.5);
-            break;
         case TEXTURE_OFFSET_MIDDLE_RIGHT:
-            setTextureOffsetX(1 - calculateTextureSizeX());
-            setTextureOffsetY(0.5 - calculateTextureSizeY()  * 0.5);
+            setTextureOffsetY(0.5 - calculateTextureSizeY() * 0.5);
             break;
         case TEXTURE_OFFSET_BOTTOM_LEFT:
-            setTextureOffsetX(0);
-            setTextureOffsetY(1 - calculateTextureSizeY());
-            break;
         case TEXTURE_OFFSET_BOTTOM_CENTER:
-            setTextureOffsetX(0.5 - calculateTextureSizeX() * 0.5);
-            setTextureOffsetY(1 - calculateTextureSizeY());
-            break;
         case TEXTURE_OFFSET_BOTTOM_RIGHT:
-            setTextureOffsetX(1 - calculateTextureSizeX());
             setTextureOffsetY(1 - calculateTextureSizeY());
             break;
     }
