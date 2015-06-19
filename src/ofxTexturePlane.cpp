@@ -23,7 +23,6 @@ void ofxTexturePlane::draw(int x, int y) {
 
 void ofxTexturePlane::draw() {
     plane.mapTexCoords(tx0, ty0, tx1, ty1);
-    plane.mapTexCoords(tx1, ty1, tx0, ty0);
     texture.bind();
     plane.draw();
     texture.unbind();
