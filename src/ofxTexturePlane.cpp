@@ -114,13 +114,11 @@ void ofxTexturePlane::incrementTextureOffsetY(float amount) {
 }
 
 void ofxTexturePlane::setTextureScale(float _scale) {
-    float difference = scale - _scale;
-    float diffMapped = ofMap(difference, 0, scale, 0, 1);
+    textureSize.x = calculateTextureSizeX();
+    textureSize.y = calculateTextureSizeY();
     scale = _scale;
-    tx0 -= tx0 * (-diffMapped * 0.5);
-    ty0 -= ty0 * (-diffMapped * 0.5);
-    setOffsetTextureSizeX();
-    setOffsetTextureSizeY();
+    incrementTextureOffsetX((textureSize.x - calculateTextureSizeX()) * 0.5);
+    incrementTextureOffsetY((textureSize.y - calculateTextureSizeY()) * 0.5);
 }
 
 void ofxTexturePlane::incrementTextureScale(float amount) {
@@ -136,17 +134,17 @@ void ofxTexturePlane::setOffsetTextureSizeY() {
 }
 
 float ofxTexturePlane::calculateTextureSizeX() {
-    textureSize =  imageIsTallerThanWide() ? 1 : calculateImageFraction();
-    textureSize *= planeIsTallerThanWide() ? calculatePlaneFraction() : 1;
-    textureSize /= scale;
-    return textureSize;
+    textureSize.x =  imageIsTallerThanWide() ? 1 : calculateImageFraction();
+    textureSize.x *= planeIsTallerThanWide() ? calculatePlaneFraction() : 1;
+    textureSize.x /= scale;
+    return textureSize.x;
 }
 
 float ofxTexturePlane::calculateTextureSizeY() {
-    textureSize =  imageIsTallerThanWide() ? calculateImageFraction() : 1;
-    textureSize *= planeIsTallerThanWide() ? 1 : calculatePlaneFraction();
-    textureSize /= scale;
-    return textureSize;
+    textureSize.y =  imageIsTallerThanWide() ? calculateImageFraction() : 1;
+    textureSize.y *= planeIsTallerThanWide() ? 1 : calculatePlaneFraction();
+    textureSize.y /= scale;
+    return textureSize.y;
 }
 
 bool ofxTexturePlane::imageIsTallerThanWide() {

@@ -59,5 +59,5 @@ protected:
     ofPlanePrimitive plane;
     float tx0, ty0, tx1, ty1;
     float scale;
-    float textureSize;
+    ofVec2f textureSize;
 };
