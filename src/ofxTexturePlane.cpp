@@ -113,6 +113,19 @@ void ofxTexturePlane::incrementTextureOffsetY(float amount) {
     setTextureOffsetY(ty0 + amount);
 }
 
+void ofxTexturePlane::setTexturePosition(float positionX, float positionY) {
+    setTexturePositionX(positionX);
+    setTexturePositionY(positionY);
+}
+
+void ofxTexturePlane::setTexturePositionX(float positionX) {
+    setTextureOffsetX(getCenteredOffset(positionX, calculateTextureSizeX()));
+}
+
+void ofxTexturePlane::setTexturePositionY(float positionY) {
+    setTextureOffsetY(getCenteredOffset(positionY, calculateTextureSizeY()));
+}
+
 void ofxTexturePlane::setTextureScale(float _scale) {
     textureSize.x = calculateTextureSizeX();
     textureSize.y = calculateTextureSizeY();
