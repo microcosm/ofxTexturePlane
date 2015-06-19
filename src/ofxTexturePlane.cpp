@@ -50,40 +50,40 @@ void ofxTexturePlane::setPlanePosition(int x, int y) {
 void ofxTexturePlane::setTextureOffset(ofxTexturePlaneOffset offset) {
     switch(offset){
         case TEXTURE_OFFSET_TOP_LEFT:
-            setTextureOffsetX(-calculateTextureSizeX() / scale);
-            setTextureOffsetY(-calculateTextureSizeY() / scale);
+            setTextureOffsetX(0);
+            setTextureOffsetY(0);
             break;
         case TEXTURE_OFFSET_TOP_CENTER:
-            setTextureOffsetX((-calculateTextureSizeX() / scale) * 1.5);
-            setTextureOffsetY(-calculateTextureSizeY() / scale);
+            setTextureOffsetX(0.5-((calculateTextureSizeX() / scale) * 0.5));
+            setTextureOffsetY(0);
             break;
         case TEXTURE_OFFSET_TOP_RIGHT:
-            setTextureOffsetX((-calculateTextureSizeX() / scale) * 2);
-            setTextureOffsetY(-calculateTextureSizeY() / scale);
+            setTextureOffsetX(1-(calculateTextureSizeX() / scale));
+            setTextureOffsetY(0);
             break;
         case TEXTURE_OFFSET_MIDDLE_LEFT:
-            setTextureOffsetX(-calculateTextureSizeX() / scale);
-            setTextureOffsetY((-calculateTextureSizeY() / scale) * 1.5);
+            setTextureOffsetX(0);
+            setTextureOffsetY(0.5-((calculateTextureSizeY() / scale) * 0.5));
             break;
         case TEXTURE_OFFSET_MIDDLE_CENTER:
-            setTextureOffsetX((-calculateTextureSizeX() / scale) * 1.5);
-            setTextureOffsetY((-calculateTextureSizeY() / scale) * 1.5);
+            setTextureOffsetX(0.5-((calculateTextureSizeX() / scale) * 0.5));
+            setTextureOffsetY(0.5-((calculateTextureSizeY() / scale) * 0.5));
             break;
         case TEXTURE_OFFSET_MIDDLE_RIGHT:
-            setTextureOffsetX((-calculateTextureSizeX() / scale) * 2);
-            setTextureOffsetY((-calculateTextureSizeY() / scale) * 1.5);
+            setTextureOffsetX(1-(calculateTextureSizeX() / scale));
+            setTextureOffsetY(0.5-((calculateTextureSizeY() / scale) * 0.5));
             break;
         case TEXTURE_OFFSET_BOTTOM_LEFT:
-            setTextureOffsetX(-calculateTextureSizeX() / scale);
-            setTextureOffsetY((-calculateTextureSizeY() / scale) * 2);
+            setTextureOffsetX(0);
+            setTextureOffsetY(1-(calculateTextureSizeY() / scale));
             break;
         case TEXTURE_OFFSET_BOTTOM_CENTER:
-            setTextureOffsetX((-calculateTextureSizeX() / scale) * 1.5);
-            setTextureOffsetY((-calculateTextureSizeY() / scale) * 2);
+            setTextureOffsetX(0.5-((calculateTextureSizeX() / scale) * 0.5));
+            setTextureOffsetY(1-(calculateTextureSizeY() / scale));
             break;
         case TEXTURE_OFFSET_BOTTOM_RIGHT:
-            setTextureOffsetX((-calculateTextureSizeX() / scale) * 2);
-            setTextureOffsetY((-calculateTextureSizeY() / scale) * 2);
+            setTextureOffsetX(1-(calculateTextureSizeX() / scale));
+            setTextureOffsetY(1-(calculateTextureSizeY() / scale));
             break;
     }
 }
