@@ -57,7 +57,7 @@ void ofxTexturePlane::setTextureOffset(ofxTexturePlaneOffset offset) {
         case TEXTURE_OFFSET_TOP_CENTER:
         case TEXTURE_OFFSET_MIDDLE_CENTER:
         case TEXTURE_OFFSET_BOTTOM_CENTER:
-            setTextureOffsetX(0.5 - calculateTextureSizeX() * 0.5);
+            setTextureOffsetX(getCenteredOffset(0.5, calculateTextureSizeX()));
             break;
         case TEXTURE_OFFSET_TOP_RIGHT:
         case TEXTURE_OFFSET_MIDDLE_RIGHT:
@@ -75,7 +75,7 @@ void ofxTexturePlane::setTextureOffset(ofxTexturePlaneOffset offset) {
         case TEXTURE_OFFSET_MIDDLE_LEFT:
         case TEXTURE_OFFSET_MIDDLE_CENTER:
         case TEXTURE_OFFSET_MIDDLE_RIGHT:
-            setTextureOffsetY(0.5 - calculateTextureSizeY() * 0.5);
+            setTextureOffsetY(getCenteredOffset(0.5, calculateTextureSizeY()));
             break;
         case TEXTURE_OFFSET_BOTTOM_LEFT:
         case TEXTURE_OFFSET_BOTTOM_CENTER:
@@ -177,4 +177,8 @@ float ofxTexturePlane::smallestPlaneDimension() {
 
 float ofxTexturePlane::largestPlaneDimension() {
     return planeIsTallerThanWide() ? plane.getHeight() : plane.getWidth();
+}
+
+float ofxTexturePlane::getCenteredOffset(float normalizedPosition, float textureSize) {
+    return normalizedPosition - textureSize * normalizedPosition;
 }

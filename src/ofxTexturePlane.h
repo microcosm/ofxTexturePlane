@@ -54,6 +54,8 @@ protected:
     float smallestPlaneDimension();
     float largestPlaneDimension();
 
+    float getCenteredOffset(float normalizedPosition, float textureSize);
+
     ofImage image;
     ofTexture texture;
     ofPlanePrimitive plane;
