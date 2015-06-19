@@ -14,6 +14,7 @@ void ofxTexturePlane::setup(string filename, int width, int height, float textur
     plane.setPosition(width * 0.5, height * 0.5, 0);
     scale = textureScale;
     setTextureOffset(offset);
+    ofEnableArbTex();
 }
 
 void ofxTexturePlane::draw(int x, int y) {
