@@ -118,7 +118,11 @@ void ofxTexturePlane::incrementTextureOffsetY(float amount) {
 }
 
 void ofxTexturePlane::setTextureScale(float _scale) {
+    float difference = scale - _scale;
+    float diffMapped = ofMap(difference, 0, scale, 0, 1);
     scale = _scale;
+    tx0 -= tx0 * (-diffMapped * 0.5);
+    ty0 -= ty0 * (-diffMapped * 0.5);
     setOffsetTextureSizeX();
     setOffsetTextureSizeY();
 }
