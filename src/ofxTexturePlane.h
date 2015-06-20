@@ -20,22 +20,27 @@ public:
     void setup(string filename, float textureScale=1, ofxTexturePlaneOffset offset=TEXTURE_OFFSET_TOP_LEFT);
     void setup(string filename, int width, int height, float textureScale=1, ofxTexturePlaneOffset offset=TEXTURE_OFFSET_TOP_LEFT);
     void draw(int x, int y);
+    void draw(ofVec2f position);
     void draw();
 
     void setPlaneSize(int width, int height);
     void setPlaneWidth(int width);
     void setPlaneHeight(int height);
     void setPlanePosition(int x, int y);
+    void setPlanePosition(ofVec2f position);
 
     void setTextureOffset(ofxTexturePlaneOffset offset);
     void setTextureOffset(float offsetX, float offsetY);
+    void setTextureOffset(ofVec2f offset);
     void setTextureOffsetX(float offsetX);
     void setTextureOffsetY(float offsetY);
     void incrementTextureOffset(float amountX, float amountY);
+    void incrementTextureOffset(ofVec2f amount);
     void incrementTextureOffsetX(float amount);
     void incrementTextureOffsetY(float amount);
 
     void setTexturePosition(float positionX, float positionY);
+    void setTexturePosition(ofVec2f position);
     void setTexturePositionX(float positionX);
     void setTexturePositionY(float positionY);
     void setTextureScale(float scale);

@@ -22,6 +22,10 @@ void ofxTexturePlane::draw(int x, int y) {
     draw();
 }
 
+void ofxTexturePlane::draw(ofVec2f position) {
+    draw(position.x, position.y);
+}
+
 void ofxTexturePlane::draw() {
     plane.mapTexCoords(tx0, ty0, tx1, ty1);
     texture.bind();
@@ -46,6 +50,10 @@ void ofxTexturePlane::setPlaneHeight(int height) {
 
 void ofxTexturePlane::setPlanePosition(int x, int y) {
     plane.setPosition(x + plane.getWidth() * 0.5, y + plane.getHeight() * 0.5, plane.getPosition().z);
+}
+
+void ofxTexturePlane::setPlanePosition(ofVec2f position) {
+    setPlanePosition(position.x, position.y);
 }
 
 void ofxTexturePlane::setTextureOffset(ofxTexturePlaneOffset offset) {
@@ -91,6 +99,10 @@ void ofxTexturePlane::setTextureOffset(float offsetX, float offsetY) {
     setTextureOffsetY(offsetY);
 }
 
+void ofxTexturePlane::setTextureOffset(ofVec2f offset) {
+    setTextureOffset(offset.x, offset.y);
+}
+
 void ofxTexturePlane::setTextureOffsetX(float offsetX) {
     tx0 = offsetX;
     setOffsetTextureSizeX();
@@ -106,6 +118,10 @@ void ofxTexturePlane::incrementTextureOffset(float amountX, float amountY) {
     incrementTextureOffsetY(amountY);
 }
 
+void ofxTexturePlane::incrementTextureOffset(ofVec2f amount) {
+    incrementTextureOffset(amount.x, amount.y);
+}
+
 void ofxTexturePlane::incrementTextureOffsetX(float amount) {
     setTextureOffsetX(tx0 + amount);
 }
@@ -117,6 +133,10 @@ void ofxTexturePlane::incrementTextureOffsetY(float amount) {
 void ofxTexturePlane::setTexturePosition(float positionX, float positionY) {
     setTexturePositionX(positionX);
     setTexturePositionY(positionY);
+}
+
+void ofxTexturePlane::setTexturePosition(ofVec2f position) {
+    setTexturePosition(position.x, position.y);
 }
 
 void ofxTexturePlane::setTexturePositionX(float positionX) {
