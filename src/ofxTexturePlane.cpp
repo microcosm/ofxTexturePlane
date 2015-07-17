@@ -18,8 +18,10 @@ void ofxTexturePlane::setup(string filename, int width, int height, float textur
 }
 
 void ofxTexturePlane::draw(int x, int y) {
+    ofVec3f planePosition = plane.getPosition();
     setPlanePosition(x, y);
     draw();
+    plane.setPosition(planePosition);
 }
 
 void ofxTexturePlane::draw(ofVec2f position) {
