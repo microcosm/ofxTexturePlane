@@ -15,6 +15,7 @@ void ofxTexturePlane::setup(string filename, int width, int height, float textur
     scale = textureScale;
     setTextureOffset(offset);
     ofEnableArbTex();
+    loadIndexableOffsets();
 }
 
 void ofxTexturePlane::draw(int x, int y) {
@@ -96,6 +97,10 @@ void ofxTexturePlane::setTextureOffset(ofxTexturePlaneOffset offset) {
     }
 }
 
+void ofxTexturePlane::setTextureOffset(int offsetIndex) {
+    setTextureOffset(offsets.at(offsetIndex));
+}
+
 void ofxTexturePlane::setTextureOffset(float offsetX, float offsetY) {
     setTextureOffsetX(offsetX);
     setTextureOffsetY(offsetY);
@@ -159,6 +164,18 @@ void ofxTexturePlane::setTextureScale(float _scale) {
 
 void ofxTexturePlane::incrementTextureScale(float amount) {
     setTextureScale(scale + amount);
+}
+
+void ofxTexturePlane::loadIndexableOffsets() {
+    offsets.push_back(TEXTURE_OFFSET_TOP_LEFT);
+    offsets.push_back(TEXTURE_OFFSET_TOP_CENTER);
+    offsets.push_back(TEXTURE_OFFSET_TOP_RIGHT);
+    offsets.push_back(TEXTURE_OFFSET_MIDDLE_LEFT);
+    offsets.push_back(TEXTURE_OFFSET_MIDDLE_CENTER);
+    offsets.push_back(TEXTURE_OFFSET_MIDDLE_RIGHT);
+    offsets.push_back(TEXTURE_OFFSET_BOTTOM_LEFT);
+    offsets.push_back(TEXTURE_OFFSET_BOTTOM_CENTER);
+    offsets.push_back(TEXTURE_OFFSET_BOTTOM_RIGHT);
 }
 
 void ofxTexturePlane::setOffsetTextureSizeX() {

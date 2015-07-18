@@ -30,6 +30,7 @@ public:
     void setPlanePosition(ofVec2f position);
 
     void setTextureOffset(ofxTexturePlaneOffset offset);
+    void setTextureOffset(int offsetIndex);
     void setTextureOffset(float offsetX, float offsetY);
     void setTextureOffset(ofVec2f offset);
     void setTextureOffsetX(float offsetX);
@@ -47,6 +48,8 @@ public:
     void incrementTextureScale(float amount);
 
 protected:
+    void loadIndexableOffsets();
+
     void setOffsetTextureSizeX();
     void setOffsetTextureSizeY();
     float calculateTextureSizeX();
@@ -70,4 +73,5 @@ protected:
     float tx0, ty0, tx1, ty1;
     float scale;
     ofVec2f textureSize;
+    vector<ofxTexturePlaneOffset> offsets;
 };
