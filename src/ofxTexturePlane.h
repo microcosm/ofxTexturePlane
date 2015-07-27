@@ -48,6 +48,8 @@ public:
     void incrementTextureScale(float amount);
 
 protected:
+    void backup();
+    void restore();
     void loadIndexableOffsets();
 
     void setOffsetTextureSizeX();
@@ -73,5 +75,7 @@ protected:
     float tx0, ty0, tx1, ty1;
     float scale;
     ofVec2f textureSize;
+
+    ofVec3f backup_planePosition;
     vector<ofxTexturePlaneOffset> offsets;
 };

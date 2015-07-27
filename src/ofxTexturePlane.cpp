@@ -18,11 +18,13 @@ void ofxTexturePlane::setup(string filename, int width, int height, float textur
     loadIndexableOffsets();
 }
 
+
+
 void ofxTexturePlane::draw(int x, int y) {
-    ofVec3f planePosition = plane.getPosition();
+    backup();
     setPlanePosition(x, y);
     draw();
-    plane.setPosition(planePosition);
+    restore();
 }
 
 void ofxTexturePlane::draw(ofVec2f position) {
@@ -164,6 +166,14 @@ void ofxTexturePlane::setTextureScale(float _scale) {
 
 void ofxTexturePlane::incrementTextureScale(float amount) {
     setTextureScale(scale + amount);
+}
+
+void ofxTexturePlane::backup() {
+    backup_planePosition = plane.getPosition();
+}
+
+void ofxTexturePlane::restore() {
+    plane.setPosition(backup_planePosition);
 }
 
 void ofxTexturePlane::loadIndexableOffsets() {
