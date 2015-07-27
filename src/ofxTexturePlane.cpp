@@ -4,7 +4,7 @@ void ofxTexturePlane::setup(string filename, float textureScale, ofxTexturePlane
     setup(filename, ofGetWidth(), ofGetHeight(), textureScale, offset);
 }
 
-void ofxTexturePlane::setup(string filename, int width, int height, float textureScale, ofxTexturePlaneOffset offset) {
+void ofxTexturePlane::setup(string filename, float width, float height, float textureScale, ofxTexturePlaneOffset offset) {
     ofDisableArbTex();
     image.loadImage(filename);
     texture = image.getTextureReference();
@@ -18,11 +18,10 @@ void ofxTexturePlane::setup(string filename, int width, int height, float textur
     loadIndexableOffsets();
 }
 
-
-
-void ofxTexturePlane::draw(int x, int y) {
+void ofxTexturePlane::draw(int x, int y, ofxTexturePlaneFlip flip) {
     backup();
     setPlanePosition(x, y);
+    flipTexture(flip);
     draw();
     restore();
 }
@@ -38,18 +37,18 @@ void ofxTexturePlane::draw() {
     texture.unbind();
 }
 
-void ofxTexturePlane::setPlaneSize(int width, int height) {
+void ofxTexturePlane::setPlaneSize(float width, float height) {
     plane.set(width, height);
     setPlanePosition(plane.getPosition().x, plane.getPosition().y);
     setOffsetTextureSizeX();
     setOffsetTextureSizeY();
 }
 
-void ofxTexturePlane::setPlaneWidth(int width) {
+void ofxTexturePlane::setPlaneWidth(float width) {
     setPlaneSize(width, plane.getHeight());
 }
 
-void ofxTexturePlane::setPlaneHeight(int height) {
+void ofxTexturePlane::setPlaneHeight(float height) {
     setPlaneSize(plane.getWidth(), height);
 }
 
@@ -168,12 +167,37 @@ void ofxTexturePlane::incrementTextureScale(float amount) {
     setTextureScale(scale + amount);
 }
 
+void ofxTexturePlane::flipTexture(ofxTexturePlaneFlip flip) {
+    switch(flip){
+        case TEXTURE_FLIP_HORIZONTAL:
+            swap(ty0, ty1);
+            break;
+        case TEXTURE_FLIP_VERTICAL:
+            swap(tx0, tx1);
+            break;
+        case TEXTURE_FLIP_BOTH:
+            swap(tx0, tx1);
+            swap(ty0, ty1);
+            break;
+        default:
+            break;
+    }
+}
+
 void ofxTexturePlane::backup() {
     backup_planePosition = plane.getPosition();
+    backup_tx0 = tx0;
+    backup_ty0 = ty0;
+    backup_tx1 = tx1;
+    backup_ty1 = ty1;
 }
 
 void ofxTexturePlane::restore() {
     plane.setPosition(backup_planePosition);
+    tx0 = backup_tx0;
+    ty0 = backup_ty0;
+    tx1 = backup_tx1;
+    ty1 = backup_ty1;
 }
 
 void ofxTexturePlane::loadIndexableOffsets() {
@@ -244,4 +268,10 @@ float ofxTexturePlane::largestPlaneDimension() {
 
 float ofxTexturePlane::getCenteredOffset(float normalizedPosition, float textureSize) {
     return normalizedPosition - textureSize * normalizedPosition;
+}
+
+void ofxTexturePlane::swap(float &val1, float &val2) {
+    float temp = val1;
+    val1 = val2;
+    val2 = temp;
 }

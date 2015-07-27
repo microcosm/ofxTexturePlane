@@ -14,18 +14,25 @@ enum ofxTexturePlaneOffset {
     TEXTURE_OFFSET_BOTTOM_RIGHT
 };
 
+enum ofxTexturePlaneFlip {
+    TEXTURE_FLIP_HORIZONTAL,
+    TEXTURE_FLIP_VERTICAL,
+    TEXTURE_FLIP_BOTH,
+    TEXTURE_FLIP_NO_FLIP
+};
+
 class ofxTexturePlane : public ofBaseApp{
 
 public:
     void setup(string filename, float textureScale=1, ofxTexturePlaneOffset offset=TEXTURE_OFFSET_TOP_LEFT);
-    void setup(string filename, int width, int height, float textureScale=1, ofxTexturePlaneOffset offset=TEXTURE_OFFSET_TOP_LEFT);
-    void draw(int x, int y);
+    void setup(string filename, float width, float height, float textureScale=1, ofxTexturePlaneOffset offset=TEXTURE_OFFSET_TOP_LEFT);
+    void draw(int x, int y, ofxTexturePlaneFlip flip=TEXTURE_FLIP_NO_FLIP);
     void draw(ofVec2f position);
     void draw();
 
-    void setPlaneSize(int width, int height);
-    void setPlaneWidth(int width);
-    void setPlaneHeight(int height);
+    void setPlaneSize(float width, float height);
+    void setPlaneWidth(float width);
+    void setPlaneHeight(float height);
     void setPlanePosition(int x, int y);
     void setPlanePosition(ofVec2f position);
 
@@ -47,6 +54,7 @@ public:
     void setTextureScale(float scale);
     void incrementTextureScale(float amount);
 
+    void flipTexture(ofxTexturePlaneFlip flip);
 protected:
     void backup();
     void restore();
@@ -68,6 +76,7 @@ protected:
     float largestPlaneDimension();
 
     float getCenteredOffset(float normalizedPosition, float textureSize);
+    void swap(float &val1, float &val2);
 
     ofImage image;
     ofTexture texture;
@@ -77,5 +86,6 @@ protected:
     ofVec2f textureSize;
 
     ofVec3f backup_planePosition;
+    float backup_tx0, backup_ty0, backup_tx1, backup_ty1;
     vector<ofxTexturePlaneOffset> offsets;
 };
