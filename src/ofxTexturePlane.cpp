@@ -4,6 +4,10 @@ void ofxTexturePlane::setup(string filename, float textureScale, ofxTexturePlane
     setup(filename, ofGetWidth(), ofGetHeight(), textureScale, offset);
 }
 
+void ofxTexturePlane::setup(string filename, ofVec2f size, float textureScale, ofxTexturePlaneOffset offset) {
+    setup(filename, size.x, size.y, textureScale, offset);
+}
+
 void ofxTexturePlane::setup(string filename, float width, float height, float textureScale, ofxTexturePlaneOffset offset) {
     ofDisableArbTex();
     image.loadImage(filename);
