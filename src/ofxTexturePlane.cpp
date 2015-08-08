@@ -69,27 +69,37 @@ void ofxTexturePlane::setTextureOffset(ofxTexturePlaneOffset offset) {
         case TEXTURE_OFFSET_TOP_LEFT:
         case TEXTURE_OFFSET_MIDDLE_LEFT:
         case TEXTURE_OFFSET_BOTTOM_LEFT:
+        case TEXTURE_OFFSET__TOP_TO_MIDDLE__LEFT:
+        case TEXTURE_OFFSET__BOTTOM_TO_MIDDLE__LEFT:
             setTextureOffsetX(0);
             break;
         case TEXTURE_OFFSET_TOP_CENTER:
         case TEXTURE_OFFSET_MIDDLE_CENTER:
         case TEXTURE_OFFSET_BOTTOM_CENTER:
+        case TEXTURE_OFFSET__TOP_TO_MIDDLE__CENTER:
+        case TEXTURE_OFFSET__BOTTOM_TO_MIDDLE__CENTER:
             setTextureOffsetX(getCenteredOffset(0.5, calculateTextureSizeX()));
             break;
         case TEXTURE_OFFSET_TOP_RIGHT:
         case TEXTURE_OFFSET_MIDDLE_RIGHT:
         case TEXTURE_OFFSET_BOTTOM_RIGHT:
+        case TEXTURE_OFFSET__TOP_TO_MIDDLE__RIGHT:
+        case TEXTURE_OFFSET__BOTTOM_TO_MIDDLE__RIGHT:
             setTextureOffsetX(1 - calculateTextureSizeX());
             break;
-        case TEXTURE_OFFSET_TOP_LEFT_TO_CENTER:
-        case TEXTURE_OFFSET_MIDDLE_LEFT_TO_CENTER:
-        case TEXTURE_OFFSET_BOTTOM_LEFT_TO_CENTER:
+        case TEXTURE_OFFSET__TOP__LEFT_TO_CENTER:
+        case TEXTURE_OFFSET__MIDDLE__LEFT_TO_CENTER:
+        case TEXTURE_OFFSET__BOTTOM__LEFT_TO_CENTER:
+        case TEXTURE_OFFSET__TOP_TO_MIDDLE__LEFT_TO_CENTER:
+        case TEXTURE_OFFSET__BOTTOM_TO_MIDDLE__LEFT_TO_CENTER:
             setTextureOffsetX(getCenteredOffset(0.5, calculateTextureSizeX()));
             incrementTextureOffsetX(-0.5);
             break;
-        case TEXTURE_OFFSET_TOP_RIGHT_TO_CENTER:
-        case TEXTURE_OFFSET_MIDDLE_RIGHT_TO_CENTER:
-        case TEXTURE_OFFSET_BOTTOM_RIGHT_TO_CENTER:
+        case TEXTURE_OFFSET__TOP__RIGHT_TO_CENTER:
+        case TEXTURE_OFFSET__MIDDLE__RIGHT_TO_CENTER:
+        case TEXTURE_OFFSET__BOTTOM__RIGHT_TO_CENTER:
+        case TEXTURE_OFFSET__TOP_TO_MIDDLE__RIGHT_TO_CENTER:
+        case TEXTURE_OFFSET__BOTTOM_TO_MIDDLE__RIGHT_TO_CENTER:
             setTextureOffsetX(getCenteredOffset(0.5, calculateTextureSizeX()));
             incrementTextureOffsetX(0.5);
             break;
@@ -99,23 +109,39 @@ void ofxTexturePlane::setTextureOffset(ofxTexturePlaneOffset offset) {
         case TEXTURE_OFFSET_TOP_LEFT:
         case TEXTURE_OFFSET_TOP_CENTER:
         case TEXTURE_OFFSET_TOP_RIGHT:
-        case TEXTURE_OFFSET_TOP_LEFT_TO_CENTER:
-        case TEXTURE_OFFSET_TOP_RIGHT_TO_CENTER:
+        case TEXTURE_OFFSET__TOP__LEFT_TO_CENTER:
+        case TEXTURE_OFFSET__TOP__RIGHT_TO_CENTER:
             setTextureOffsetY(0);
             break;
         case TEXTURE_OFFSET_MIDDLE_LEFT:
         case TEXTURE_OFFSET_MIDDLE_CENTER:
         case TEXTURE_OFFSET_MIDDLE_RIGHT:
-        case TEXTURE_OFFSET_MIDDLE_LEFT_TO_CENTER:
-        case TEXTURE_OFFSET_MIDDLE_RIGHT_TO_CENTER:
+        case TEXTURE_OFFSET__MIDDLE__LEFT_TO_CENTER:
+        case TEXTURE_OFFSET__MIDDLE__RIGHT_TO_CENTER:
             setTextureOffsetY(getCenteredOffset(0.5, calculateTextureSizeY()));
             break;
         case TEXTURE_OFFSET_BOTTOM_LEFT:
         case TEXTURE_OFFSET_BOTTOM_CENTER:
         case TEXTURE_OFFSET_BOTTOM_RIGHT:
-        case TEXTURE_OFFSET_BOTTOM_LEFT_TO_CENTER:
-        case TEXTURE_OFFSET_BOTTOM_RIGHT_TO_CENTER:
+        case TEXTURE_OFFSET__BOTTOM__LEFT_TO_CENTER:
+        case TEXTURE_OFFSET__BOTTOM__RIGHT_TO_CENTER:
             setTextureOffsetY(1 - calculateTextureSizeY());
+            break;
+        case TEXTURE_OFFSET__TOP_TO_MIDDLE__LEFT:
+        case TEXTURE_OFFSET__TOP_TO_MIDDLE__CENTER:
+        case TEXTURE_OFFSET__TOP_TO_MIDDLE__RIGHT:
+        case TEXTURE_OFFSET__TOP_TO_MIDDLE__LEFT_TO_CENTER:
+        case TEXTURE_OFFSET__TOP_TO_MIDDLE__RIGHT_TO_CENTER:
+            setTextureOffsetY(getCenteredOffset(0.5, calculateTextureSizeY()));
+            incrementTextureOffsetY(-0.5);
+            break;
+        case TEXTURE_OFFSET__BOTTOM_TO_MIDDLE__LEFT:
+        case TEXTURE_OFFSET__BOTTOM_TO_MIDDLE__CENTER:
+        case TEXTURE_OFFSET__BOTTOM_TO_MIDDLE__RIGHT:
+        case TEXTURE_OFFSET__BOTTOM_TO_MIDDLE__LEFT_TO_CENTER:
+        case TEXTURE_OFFSET__BOTTOM_TO_MIDDLE__RIGHT_TO_CENTER:
+            setTextureOffsetY(getCenteredOffset(0.5, calculateTextureSizeY()));
+            incrementTextureOffsetY(0.5);
             break;
     }
 }
