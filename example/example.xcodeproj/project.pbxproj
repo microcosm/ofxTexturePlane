@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		84E9652B1B2CBDC8009CD968 /* ofxTexturePlane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84E965291B2CBDC8009CD968 /* ofxTexturePlane.cpp */; };
+		840748131BADA3F700E0D51F /* ofxTexturePlane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 840748111BADA3F700E0D51F /* ofxTexturePlane.cpp */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
@@ -60,8 +60,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		84E965291B2CBDC8009CD968 /* ofxTexturePlane.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxTexturePlane.cpp; sourceTree = "<group>"; };
-		84E9652A1B2CBDC8009CD968 /* ofxTexturePlane.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxTexturePlane.h; sourceTree = "<group>"; };
+		840748111BADA3F700E0D51F /* ofxTexturePlane.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxTexturePlane.cpp; sourceTree = "<group>"; };
+		840748121BADA3F700E0D51F /* ofxTexturePlane.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxTexturePlane.h; sourceTree = "<group>"; };
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E45BE9710E8CC7DD009D7055 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
@@ -114,28 +114,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		84E965271B2CBDC8009CD968 /* ofxTexturePlane */ = {
+		8407480F1BADA3F700E0D51F /* ofxTexturePlane */ = {
 			isa = PBXGroup;
 			children = (
-				84E965281B2CBDC8009CD968 /* src */,
+				840748101BADA3F700E0D51F /* src */,
 			);
 			name = ofxTexturePlane;
 			sourceTree = "<group>";
 		};
-		84E965281B2CBDC8009CD968 /* src */ = {
+		840748101BADA3F700E0D51F /* src */ = {
 			isa = PBXGroup;
 			children = (
-				84E965291B2CBDC8009CD968 /* ofxTexturePlane.cpp */,
-				84E9652A1B2CBDC8009CD968 /* ofxTexturePlane.h */,
+				840748111BADA3F700E0D51F /* ofxTexturePlane.cpp */,
+				840748121BADA3F700E0D51F /* ofxTexturePlane.h */,
 			);
 			name = src;
-			path = ../src;
+			path = ../../../addons/ofxTexturePlane/src;
 			sourceTree = "<group>";
 		};
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
-				84E965271B2CBDC8009CD968 /* ofxTexturePlane */,
+				8407480F1BADA3F700E0D51F /* ofxTexturePlane */,
 			);
 			name = addons;
 			sourceTree = "<group>";
@@ -307,7 +307,7 @@
 			files = (
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
-				84E9652B1B2CBDC8009CD968 /* ofxTexturePlane.cpp in Sources */,
+				840748131BADA3F700E0D51F /* ofxTexturePlane.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
