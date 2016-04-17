@@ -47,6 +47,7 @@ public:
     void setup(string filename, float textureScale=1, ofxTexturePlaneOffset offset=TEXTURE_OFFSET_TOP_LEFT);
     void setup(string filename, ofVec2f size, float textureScale=1, ofxTexturePlaneOffset offset=TEXTURE_OFFSET_TOP_LEFT);
     void setup(string filename, float width, float height, float textureScale=1, ofxTexturePlaneOffset offset=TEXTURE_OFFSET_TOP_LEFT);
+    void setup(ofImage& image, float width, float height, float textureScale=1, ofxTexturePlaneOffset offset=TEXTURE_OFFSET_TOP_LEFT);
     void draw(int x, int y, ofxTexturePlaneFlip flip=TEXTURE_FLIP_NO_FLIP);
     void draw(ofVec2f position);
     void draw();

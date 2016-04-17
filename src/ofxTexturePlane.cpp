@@ -9,8 +9,12 @@ void ofxTexturePlane::setup(string filename, ofVec2f size, float textureScale, o
 }
 
 void ofxTexturePlane::setup(string filename, float width, float height, float textureScale, ofxTexturePlaneOffset offset) {
-    ofDisableArbTex();
     image.loadImage(filename);
+    setup(image, width, height, textureScale, offset);
+}
+
+void ofxTexturePlane::setup(ofImage& image, float width, float height, float textureScale, ofxTexturePlaneOffset offset) {
+    ofDisableArbTex();
     texture = image.getTextureReference();
     texture.setTextureWrap(GL_MIRRORED_REPEAT, GL_MIRRORED_REPEAT);
     plane.setResolution(2, 2);
