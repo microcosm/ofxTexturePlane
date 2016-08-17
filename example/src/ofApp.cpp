@@ -39,8 +39,6 @@ void ofApp::update(){
 }
 
 void ofApp::draw(){
-    ofSetColor(ofColor::white);
-    
     seamlessPlane1.draw(20, 20);
     buildingPlane1.draw(240, 20);
     landscapePlane1.draw(460, 20);
@@ -52,8 +50,6 @@ void ofApp::draw(){
     seamlessPlane3.draw(20, 460);
     buildingPlane3.draw(240, 460);
     landscapePlane3.draw(460, 460);
-    
-    ofSetColor(ofColor::black);
 }
 
 void ofApp::keyPressed(int key){
