@@ -17,6 +17,7 @@ void ofxTexturePlane::setup(ofImage& image, ofVec2f size, float textureScale, of
 }
 
 void ofxTexturePlane::setup(string filename, float width, float height, float textureScale, ofxTexturePlaneOffset offset) {
+    ofDisableArbTex();
     image.load(filename);
     setup(image, width, height, textureScale, offset);
 }
@@ -30,7 +31,6 @@ void ofxTexturePlane::setup(ofImage& image, float width, float height, float tex
     plane.setPosition(width * 0.5, height * 0.5, 0);
     scale = textureScale;
     setTextureOffset(offset);
-    ofEnableArbTex();
     loadIndexableOffsets();
 }
 
