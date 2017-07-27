@@ -87,8 +87,7 @@ protected:
 
     void setOffsetTextureSizeX();
     void setOffsetTextureSizeY();
-    float calculateTextureSizeX();
-    float calculateTextureSizeY();
+    void calculateTextureSizes();
 
     bool imageIsTallerThanWide();
     float calculateImageFraction();

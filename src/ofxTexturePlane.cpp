@@ -90,21 +90,24 @@ void ofxTexturePlane::setTextureOffset(ofxTexturePlaneOffset offset) {
         case TEXTURE_OFFSET_BOTTOM_CENTER:
         case TEXTURE_OFFSET__TOP_TO_MIDDLE__CENTER:
         case TEXTURE_OFFSET__BOTTOM_TO_MIDDLE__CENTER:
-            setTextureOffsetX(getCenteredOffset(0.5, calculateTextureSizeX()));
+            calculateTextureSizes();
+            setTextureOffsetX(getCenteredOffset(0.5, textureSize.x));
             break;
         case TEXTURE_OFFSET_TOP_RIGHT:
         case TEXTURE_OFFSET_MIDDLE_RIGHT:
         case TEXTURE_OFFSET_BOTTOM_RIGHT:
         case TEXTURE_OFFSET__TOP_TO_MIDDLE__RIGHT:
         case TEXTURE_OFFSET__BOTTOM_TO_MIDDLE__RIGHT:
-            setTextureOffsetX(1 - calculateTextureSizeX());
+            calculateTextureSizes();
+            setTextureOffsetX(1 - textureSize.x);
             break;
         case TEXTURE_OFFSET__TOP__LEFT_TO_CENTER:
         case TEXTURE_OFFSET__MIDDLE__LEFT_TO_CENTER:
         case TEXTURE_OFFSET__BOTTOM__LEFT_TO_CENTER:
         case TEXTURE_OFFSET__TOP_TO_MIDDLE__LEFT_TO_CENTER:
         case TEXTURE_OFFSET__BOTTOM_TO_MIDDLE__LEFT_TO_CENTER:
-            setTextureOffsetX(getCenteredOffset(0.5, calculateTextureSizeX()));
+            calculateTextureSizes();
+            setTextureOffsetX(getCenteredOffset(0.5, textureSize.x));
             incrementTextureOffsetX(-0.5);
             break;
         case TEXTURE_OFFSET__TOP__RIGHT_TO_CENTER:
@@ -112,7 +115,8 @@ void ofxTexturePlane::setTextureOffset(ofxTexturePlaneOffset offset) {
         case TEXTURE_OFFSET__BOTTOM__RIGHT_TO_CENTER:
         case TEXTURE_OFFSET__TOP_TO_MIDDLE__RIGHT_TO_CENTER:
         case TEXTURE_OFFSET__BOTTOM_TO_MIDDLE__RIGHT_TO_CENTER:
-            setTextureOffsetX(getCenteredOffset(0.5, calculateTextureSizeX()));
+            calculateTextureSizes();
+            setTextureOffsetX(getCenteredOffset(0.5, textureSize.x));
             incrementTextureOffsetX(0.5);
             break;
     }
@@ -130,21 +134,24 @@ void ofxTexturePlane::setTextureOffset(ofxTexturePlaneOffset offset) {
         case TEXTURE_OFFSET_MIDDLE_RIGHT:
         case TEXTURE_OFFSET__MIDDLE__LEFT_TO_CENTER:
         case TEXTURE_OFFSET__MIDDLE__RIGHT_TO_CENTER:
-            setTextureOffsetY(getCenteredOffset(0.5, calculateTextureSizeY()));
+            calculateTextureSizes();
+            setTextureOffsetY(getCenteredOffset(0.5, textureSize.y));
             break;
         case TEXTURE_OFFSET_BOTTOM_LEFT:
         case TEXTURE_OFFSET_BOTTOM_CENTER:
         case TEXTURE_OFFSET_BOTTOM_RIGHT:
         case TEXTURE_OFFSET__BOTTOM__LEFT_TO_CENTER:
         case TEXTURE_OFFSET__BOTTOM__RIGHT_TO_CENTER:
-            setTextureOffsetY(1 - calculateTextureSizeY());
+            calculateTextureSizes();
+            setTextureOffsetY(1 - textureSize.y);
             break;
         case TEXTURE_OFFSET__TOP_TO_MIDDLE__LEFT:
         case TEXTURE_OFFSET__TOP_TO_MIDDLE__CENTER:
         case TEXTURE_OFFSET__TOP_TO_MIDDLE__RIGHT:
         case TEXTURE_OFFSET__TOP_TO_MIDDLE__LEFT_TO_CENTER:
         case TEXTURE_OFFSET__TOP_TO_MIDDLE__RIGHT_TO_CENTER:
-            setTextureOffsetY(getCenteredOffset(0.5, calculateTextureSizeY()));
+            calculateTextureSizes();
+            setTextureOffsetY(getCenteredOffset(0.5, textureSize.y));
             incrementTextureOffsetY(-0.5);
             break;
         case TEXTURE_OFFSET__BOTTOM_TO_MIDDLE__LEFT:
@@ -152,7 +159,8 @@ void ofxTexturePlane::setTextureOffset(ofxTexturePlaneOffset offset) {
         case TEXTURE_OFFSET__BOTTOM_TO_MIDDLE__RIGHT:
         case TEXTURE_OFFSET__BOTTOM_TO_MIDDLE__LEFT_TO_CENTER:
         case TEXTURE_OFFSET__BOTTOM_TO_MIDDLE__RIGHT_TO_CENTER:
-            setTextureOffsetY(getCenteredOffset(0.5, calculateTextureSizeY()));
+            calculateTextureSizes();
+            setTextureOffsetY(getCenteredOffset(0.5, textureSize.y));
             incrementTextureOffsetY(0.5);
             break;
     }
@@ -208,19 +216,23 @@ void ofxTexturePlane::setTexturePosition(ofVec2f position) {
 }
 
 void ofxTexturePlane::setTexturePositionX(float positionX) {
-    setTextureOffsetX(getCenteredOffset(positionX, calculateTextureSizeX()));
+    calculateTextureSizes();
+    setTextureOffsetX(getCenteredOffset(positionX, textureSize.x));
 }
 
 void ofxTexturePlane::setTexturePositionY(float positionY) {
-    setTextureOffsetY(getCenteredOffset(positionY, calculateTextureSizeY()));
+    calculateTextureSizes();
+    setTextureOffsetY(getCenteredOffset(positionY, textureSize.y));
 }
 
 void ofxTexturePlane::setTextureScale(float _scale) {
-    textureSize.x = calculateTextureSizeX();
-    textureSize.y = calculateTextureSizeY();
+    calculateTextureSizes();
+    float x = textureSize.x;
+    float y = textureSize.y;
     scale = _scale;
-    incrementTextureOffsetX((textureSize.x - calculateTextureSizeX()) * 0.5);
-    incrementTextureOffsetY((textureSize.y - calculateTextureSizeY()) * 0.5);
+    calculateTextureSizes();
+    incrementTextureOffsetX((x - textureSize.x) * 0.5);
+    incrementTextureOffsetY((y - textureSize.y) * 0.5);
 }
 
 void ofxTexturePlane::incrementTextureScale(float amount) {
@@ -273,25 +285,28 @@ void ofxTexturePlane::loadIndexableOffsets() {
 }
 
 void ofxTexturePlane::setOffsetTextureSizeX() {
-    tx1 = tx0 + calculateTextureSizeX();
+    calculateTextureSizes();
+    tx1 = tx0 + textureSize.x;
 }
 
 void ofxTexturePlane::setOffsetTextureSizeY() {
-    ty1 = ty0 + calculateTextureSizeY();
+    calculateTextureSizes();
+    ty1 = ty0 + textureSize.y;
 }
 
-float ofxTexturePlane::calculateTextureSizeX() {
-    textureSize.x =  imageIsTallerThanWide() ? 1 : calculateImageFraction();
-    textureSize.x *= planeIsTallerThanWide() ? calculatePlaneFraction() : 1;
+void ofxTexturePlane::calculateTextureSizes() {
+    float combinedX = plane.getWidth() / image.getWidth();
+    float combinedY = plane.getHeight() / image.getHeight();
+
+    if(combinedX < combinedY){
+        textureSize.x = combinedX / combinedY;
+        textureSize.y = 1;
+    }else{
+        textureSize.x = 1;
+        textureSize.y = combinedY / combinedX;
+    }
     textureSize.x /= scale;
-    return textureSize.x;
-}
-
-float ofxTexturePlane::calculateTextureSizeY() {
-    textureSize.y =  imageIsTallerThanWide() ? calculateImageFraction() : 1;
-    textureSize.y *= planeIsTallerThanWide() ? 1 : calculatePlaneFraction();
     textureSize.y /= scale;
-    return textureSize.y;
 }
 
 bool ofxTexturePlane::imageIsTallerThanWide() {
