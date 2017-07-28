@@ -103,16 +103,6 @@ protected:
     void setOffsetTextureSizeY();
     void calculateTextureSizes();
 
-    bool imageIsTallerThanWide();
-    float calculateImageFraction();
-    float smallestImageDimension();
-    float largestImageDimension();
-
-    bool planeIsTallerThanWide();
-    float calculatePlaneFraction();
-    float smallestPlaneDimension();
-    float largestPlaneDimension();
-
     float getCenteredOffset(float normalizedPosition, float textureSize);
     void swap(float &val1, float &val2);
 

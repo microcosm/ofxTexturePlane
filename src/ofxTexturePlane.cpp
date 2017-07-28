@@ -334,38 +334,6 @@ void ofxTexturePlane::calculateTextureSizes() {
     textureSize.y /= scale;
 }
 
-bool ofxTexturePlane::imageIsTallerThanWide() {
-    return image.getHeight() > image.getWidth();
-}
-
-float ofxTexturePlane::calculateImageFraction() {
-    return smallestImageDimension() / largestImageDimension();
-}
-
-float ofxTexturePlane::smallestImageDimension() {
-    return imageIsTallerThanWide() ? image.getWidth() : image.getHeight();
-}
-
-float ofxTexturePlane::largestImageDimension() {
-    return imageIsTallerThanWide() ? image.getHeight() : image.getWidth();
-}
-
-bool ofxTexturePlane::planeIsTallerThanWide() {
-    return plane.getHeight() > plane.getWidth();
-}
-
-float ofxTexturePlane::calculatePlaneFraction() {
-    return smallestPlaneDimension() / largestPlaneDimension();
-}
-
-float ofxTexturePlane::smallestPlaneDimension() {
-    return planeIsTallerThanWide() ? plane.getWidth() : plane.getHeight();
-}
-
-float ofxTexturePlane::largestPlaneDimension() {
-    return planeIsTallerThanWide() ? plane.getHeight() : plane.getWidth();
-}
-
 float ofxTexturePlane::getCenteredOffset(float normalizedPosition, float textureSize) {
     return normalizedPosition - textureSize * normalizedPosition;
 }
