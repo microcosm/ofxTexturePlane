@@ -1,31 +1,41 @@
 #include "ofxTexturePlane.h"
 
-void ofxTexturePlane::setup(string filename, float textureScale, ofxTexturePlaneOffset offset, ofxTexturePlaneMode mode) {
-    setup(filename, ofGetWidth(), ofGetHeight(), textureScale, offset, mode);
+void ofxTexturePlane::setup(string filename, float textureScale, ofxTexturePlaneOffset offset, ofxTexturePlaneMode mode, ofxTexturePlaneWrap wrap) {
+    setup(filename, ofGetWidth(), ofGetHeight(), textureScale, offset, mode, wrap);
 }
 
-void ofxTexturePlane::setup(ofImage& image, float textureScale, ofxTexturePlaneOffset offset, ofxTexturePlaneMode mode) {
-    setup(image, ofGetWidth(), ofGetHeight(), textureScale, offset, mode);
+void ofxTexturePlane::setup(ofImage& image, float textureScale, ofxTexturePlaneOffset offset, ofxTexturePlaneMode mode, ofxTexturePlaneWrap wrap) {
+    setup(image, ofGetWidth(), ofGetHeight(), textureScale, offset, mode, wrap);
 }
 
-void ofxTexturePlane::setup(string filename, ofVec2f size, float textureScale, ofxTexturePlaneOffset offset, ofxTexturePlaneMode mode) {
-    setup(filename, size.x, size.y, textureScale, offset, mode);
+void ofxTexturePlane::setup(string filename, ofVec2f size, float textureScale, ofxTexturePlaneOffset offset, ofxTexturePlaneMode mode, ofxTexturePlaneWrap wrap) {
+    setup(filename, size.x, size.y, textureScale, offset, mode, wrap);
 }
 
-void ofxTexturePlane::setup(ofImage& image, ofVec2f size, float textureScale, ofxTexturePlaneOffset offset, ofxTexturePlaneMode mode) {
-    setup(image, size.x, size.y, textureScale, offset, mode);
+void ofxTexturePlane::setup(ofImage& image, ofVec2f size, float textureScale, ofxTexturePlaneOffset offset, ofxTexturePlaneMode mode, ofxTexturePlaneWrap wrap) {
+    setup(image, size.x, size.y, textureScale, offset, mode, wrap);
 }
 
-void ofxTexturePlane::setup(string filename, float width, float height, float textureScale, ofxTexturePlaneOffset offset, ofxTexturePlaneMode mode) {
+void ofxTexturePlane::setup(string filename, float width, float height, float textureScale, ofxTexturePlaneOffset offset, ofxTexturePlaneMode mode, ofxTexturePlaneWrap wrap) {
     ofDisableArbTex();
     image.load(filename);
-    setup(image, width, height, textureScale, offset, mode);
+    setup(image, width, height, textureScale, offset, mode, wrap);
 }
 
-void ofxTexturePlane::setup(ofImage& image, float width, float height, float textureScale, ofxTexturePlaneOffset offset, ofxTexturePlaneMode mode) {
+void ofxTexturePlane::setup(ofImage& image, float width, float height, float textureScale, ofxTexturePlaneOffset offset, ofxTexturePlaneMode mode, ofxTexturePlaneWrap wrap) {
     ofDisableArbTex();
     texture = image.getTexture();
-    texture.setTextureWrap(GL_MIRRORED_REPEAT, GL_MIRRORED_REPEAT);
+
+    if(wrap == TEXTURE_WRAP_REPEAT){
+        texture.setTextureWrap(GL_REPEAT, GL_REPEAT);
+    }else if(wrap == TEXTURE_WRAP_MIRRORED_REPEAT){
+        texture.setTextureWrap(GL_MIRRORED_REPEAT, GL_MIRRORED_REPEAT);
+    }else if(wrap == TEXTURE_WRAP_CLAMP_TO_EDGE){
+        texture.setTextureWrap(GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE);
+    }else if(wrap == TEXTURE_WRAP_CLAMP_TO_BORDER){
+        texture.setTextureWrap(GL_CLAMP_TO_BORDER, GL_CLAMP_TO_BORDER);
+    }
+
     plane.setResolution(2, 2);
     plane.set(width, height);
     plane.setPosition(width * 0.5, height * 0.5, 0);

@@ -46,15 +46,22 @@ enum ofxTexturePlaneMode {
     TEXTURE_MODE_FIT
 };
 
+enum ofxTexturePlaneWrap {
+    TEXTURE_WRAP_REPEAT,
+    TEXTURE_WRAP_MIRRORED_REPEAT,
+    TEXTURE_WRAP_CLAMP_TO_EDGE,
+    TEXTURE_WRAP_CLAMP_TO_BORDER
+};
+
 class ofxTexturePlane : public ofBaseApp{
 
 public:
-    void setup(string filename, float textureScale=1, ofxTexturePlaneOffset offset=TEXTURE_OFFSET_TOP_LEFT, ofxTexturePlaneMode mode=TEXTURE_MODE_COVER);
-    void setup(ofImage& image, float textureScale=1, ofxTexturePlaneOffset offset=TEXTURE_OFFSET_TOP_LEFT, ofxTexturePlaneMode mode=TEXTURE_MODE_COVER);
-    void setup(string filename, ofVec2f size, float textureScale=1, ofxTexturePlaneOffset offset=TEXTURE_OFFSET_TOP_LEFT, ofxTexturePlaneMode mode=TEXTURE_MODE_COVER);
-    void setup(ofImage& image, ofVec2f size, float textureScale=1, ofxTexturePlaneOffset offset=TEXTURE_OFFSET_TOP_LEFT, ofxTexturePlaneMode mode=TEXTURE_MODE_COVER);
-    void setup(string filename, float width, float height, float textureScale=1, ofxTexturePlaneOffset offset=TEXTURE_OFFSET_TOP_LEFT, ofxTexturePlaneMode mode=TEXTURE_MODE_COVER);
-    void setup(ofImage& image, float width, float height, float textureScale=1, ofxTexturePlaneOffset offset=TEXTURE_OFFSET_TOP_LEFT, ofxTexturePlaneMode mode=TEXTURE_MODE_COVER);
+    void setup(string filename, float textureScale=1, ofxTexturePlaneOffset offset=TEXTURE_OFFSET_TOP_LEFT, ofxTexturePlaneMode mode=TEXTURE_MODE_COVER, ofxTexturePlaneWrap wrap=TEXTURE_WRAP_MIRRORED_REPEAT);
+    void setup(ofImage& image, float textureScale=1, ofxTexturePlaneOffset offset=TEXTURE_OFFSET_TOP_LEFT, ofxTexturePlaneMode mode=TEXTURE_MODE_COVER, ofxTexturePlaneWrap wrap=TEXTURE_WRAP_MIRRORED_REPEAT);
+    void setup(string filename, ofVec2f size, float textureScale=1, ofxTexturePlaneOffset offset=TEXTURE_OFFSET_TOP_LEFT, ofxTexturePlaneMode mode=TEXTURE_MODE_COVER, ofxTexturePlaneWrap wrap=TEXTURE_WRAP_MIRRORED_REPEAT);
+    void setup(ofImage& image, ofVec2f size, float textureScale=1, ofxTexturePlaneOffset offset=TEXTURE_OFFSET_TOP_LEFT, ofxTexturePlaneMode mode=TEXTURE_MODE_COVER, ofxTexturePlaneWrap wrap=TEXTURE_WRAP_MIRRORED_REPEAT);
+    void setup(string filename, float width, float height, float textureScale=1, ofxTexturePlaneOffset offset=TEXTURE_OFFSET_TOP_LEFT, ofxTexturePlaneMode mode=TEXTURE_MODE_COVER, ofxTexturePlaneWrap wrap=TEXTURE_WRAP_MIRRORED_REPEAT);
+    void setup(ofImage& image, float width, float height, float textureScale=1, ofxTexturePlaneOffset offset=TEXTURE_OFFSET_TOP_LEFT, ofxTexturePlaneMode mode=TEXTURE_MODE_COVER, ofxTexturePlaneWrap wrap=TEXTURE_WRAP_MIRRORED_REPEAT);
 
     void draw(int x, int y, ofxTexturePlaneFlip flip=TEXTURE_FLIP_NO_FLIP);
     void draw(ofVec2f position);
@@ -67,6 +74,7 @@ public:
     void setPlanePosition(ofVec2f position);
 
     void setTextureMode(ofxTexturePlaneMode mode);
+
     void setTextureOffset(ofxTexturePlaneOffset offset);
     void setTextureOffset(int offsetIndex);
     void setTextureOffset(float offsetX, float offsetY);
