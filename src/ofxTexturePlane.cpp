@@ -1,28 +1,28 @@
 #include "ofxTexturePlane.h"
 
-void ofxTexturePlane::setup(string filename, float textureScale, ofxTexturePlaneOffset offset) {
-    setup(filename, ofGetWidth(), ofGetHeight(), textureScale, offset);
+void ofxTexturePlane::setup(string filename, float textureScale, ofxTexturePlaneOffset offset, ofxTexturePlaneMode mode) {
+    setup(filename, ofGetWidth(), ofGetHeight(), textureScale, offset, mode);
 }
 
-void ofxTexturePlane::setup(ofImage& image, float textureScale, ofxTexturePlaneOffset offset) {
-    setup(image, ofGetWidth(), ofGetHeight(), textureScale, offset);
+void ofxTexturePlane::setup(ofImage& image, float textureScale, ofxTexturePlaneOffset offset, ofxTexturePlaneMode mode) {
+    setup(image, ofGetWidth(), ofGetHeight(), textureScale, offset, mode);
 }
 
-void ofxTexturePlane::setup(string filename, ofVec2f size, float textureScale, ofxTexturePlaneOffset offset) {
-    setup(filename, size.x, size.y, textureScale, offset);
+void ofxTexturePlane::setup(string filename, ofVec2f size, float textureScale, ofxTexturePlaneOffset offset, ofxTexturePlaneMode mode) {
+    setup(filename, size.x, size.y, textureScale, offset, mode);
 }
 
-void ofxTexturePlane::setup(ofImage& image, ofVec2f size, float textureScale, ofxTexturePlaneOffset offset) {
-    setup(image, size.x, size.y, textureScale, offset);
+void ofxTexturePlane::setup(ofImage& image, ofVec2f size, float textureScale, ofxTexturePlaneOffset offset, ofxTexturePlaneMode mode) {
+    setup(image, size.x, size.y, textureScale, offset, mode);
 }
 
-void ofxTexturePlane::setup(string filename, float width, float height, float textureScale, ofxTexturePlaneOffset offset) {
+void ofxTexturePlane::setup(string filename, float width, float height, float textureScale, ofxTexturePlaneOffset offset, ofxTexturePlaneMode mode) {
     ofDisableArbTex();
     image.load(filename);
-    setup(image, width, height, textureScale, offset);
+    setup(image, width, height, textureScale, offset, mode);
 }
 
-void ofxTexturePlane::setup(ofImage& image, float width, float height, float textureScale, ofxTexturePlaneOffset offset) {
+void ofxTexturePlane::setup(ofImage& image, float width, float height, float textureScale, ofxTexturePlaneOffset offset, ofxTexturePlaneMode mode) {
     ofDisableArbTex();
     texture = image.getTexture();
     texture.setTextureWrap(GL_MIRRORED_REPEAT, GL_MIRRORED_REPEAT);
@@ -30,6 +30,7 @@ void ofxTexturePlane::setup(ofImage& image, float width, float height, float tex
     plane.set(width, height);
     plane.setPosition(width * 0.5, height * 0.5, 0);
     scale = textureScale;
+    setTextureMode(mode);
     setTextureOffset(offset);
     loadIndexableOffsets();
 }
@@ -74,6 +75,10 @@ void ofxTexturePlane::setPlanePosition(int x, int y) {
 
 void ofxTexturePlane::setPlanePosition(ofVec2f position) {
     setPlanePosition(position.x, position.y);
+}
+
+void ofxTexturePlane::setTextureMode(ofxTexturePlaneMode mode) {
+    textureMode = mode;
 }
 
 void ofxTexturePlane::setTextureOffset(ofxTexturePlaneOffset offset) {
@@ -298,12 +303,22 @@ void ofxTexturePlane::calculateTextureSizes() {
     float combinedX = plane.getWidth() / image.getWidth();
     float combinedY = plane.getHeight() / image.getHeight();
 
-    if(combinedX < combinedY){
-        textureSize.x = combinedX / combinedY;
-        textureSize.y = 1;
-    }else{
-        textureSize.x = 1;
-        textureSize.y = combinedY / combinedX;
+    if(textureMode == TEXTURE_MODE_COVER){
+        if(combinedX < combinedY){
+            textureSize.x = combinedX / combinedY;
+            textureSize.y = 1;
+        }else{
+            textureSize.x = 1;
+            textureSize.y = combinedY / combinedX;
+        }
+    }else if(textureMode == TEXTURE_MODE_FIT){
+        if(combinedX < combinedY){
+            textureSize.x = 1;
+            textureSize.y = combinedY / combinedX;
+        }else{
+            textureSize.x = combinedX / combinedY;
+            textureSize.y = 1;
+        }
     }
     textureSize.x /= scale;
     textureSize.y /= scale;

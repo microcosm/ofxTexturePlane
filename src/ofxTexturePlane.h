@@ -41,15 +41,20 @@ enum ofxTexturePlaneFlip {
     TEXTURE_FLIP_NO_FLIP
 };
 
+enum ofxTexturePlaneMode {
+    TEXTURE_MODE_COVER,
+    TEXTURE_MODE_FIT
+};
+
 class ofxTexturePlane : public ofBaseApp{
 
 public:
-    void setup(string filename, float textureScale=1, ofxTexturePlaneOffset offset=TEXTURE_OFFSET_TOP_LEFT);
-    void setup(ofImage& image, float textureScale=1, ofxTexturePlaneOffset offset=TEXTURE_OFFSET_TOP_LEFT);
-    void setup(string filename, ofVec2f size, float textureScale=1, ofxTexturePlaneOffset offset=TEXTURE_OFFSET_TOP_LEFT);
-    void setup(ofImage& image, ofVec2f size, float textureScale=1, ofxTexturePlaneOffset offset=TEXTURE_OFFSET_TOP_LEFT);
-    void setup(string filename, float width, float height, float textureScale=1, ofxTexturePlaneOffset offset=TEXTURE_OFFSET_TOP_LEFT);
-    void setup(ofImage& image, float width, float height, float textureScale=1, ofxTexturePlaneOffset offset=TEXTURE_OFFSET_TOP_LEFT);
+    void setup(string filename, float textureScale=1, ofxTexturePlaneOffset offset=TEXTURE_OFFSET_TOP_LEFT, ofxTexturePlaneMode mode=TEXTURE_MODE_COVER);
+    void setup(ofImage& image, float textureScale=1, ofxTexturePlaneOffset offset=TEXTURE_OFFSET_TOP_LEFT, ofxTexturePlaneMode mode=TEXTURE_MODE_COVER);
+    void setup(string filename, ofVec2f size, float textureScale=1, ofxTexturePlaneOffset offset=TEXTURE_OFFSET_TOP_LEFT, ofxTexturePlaneMode mode=TEXTURE_MODE_COVER);
+    void setup(ofImage& image, ofVec2f size, float textureScale=1, ofxTexturePlaneOffset offset=TEXTURE_OFFSET_TOP_LEFT, ofxTexturePlaneMode mode=TEXTURE_MODE_COVER);
+    void setup(string filename, float width, float height, float textureScale=1, ofxTexturePlaneOffset offset=TEXTURE_OFFSET_TOP_LEFT, ofxTexturePlaneMode mode=TEXTURE_MODE_COVER);
+    void setup(ofImage& image, float width, float height, float textureScale=1, ofxTexturePlaneOffset offset=TEXTURE_OFFSET_TOP_LEFT, ofxTexturePlaneMode mode=TEXTURE_MODE_COVER);
 
     void draw(int x, int y, ofxTexturePlaneFlip flip=TEXTURE_FLIP_NO_FLIP);
     void draw(ofVec2f position);
@@ -61,6 +66,7 @@ public:
     void setPlanePosition(int x, int y);
     void setPlanePosition(ofVec2f position);
 
+    void setTextureMode(ofxTexturePlaneMode mode);
     void setTextureOffset(ofxTexturePlaneOffset offset);
     void setTextureOffset(int offsetIndex);
     void setTextureOffset(float offsetX, float offsetY);
@@ -112,4 +118,5 @@ protected:
     ofVec3f backup_planePosition;
     float backup_tx0, backup_ty0, backup_tx1, backup_ty1;
     vector<ofxTexturePlaneOffset> offsets;
+    ofxTexturePlaneMode textureMode;
 };
