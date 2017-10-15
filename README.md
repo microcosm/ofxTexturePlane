@@ -2,6 +2,28 @@ ofxTexturePlane
 ===============
 This addon allows you to animate a repeating image texture inside a plane.
 
+Loading an image
+--
+You can either pass in the filename of an image to load, or pass in an `ofImage` object.
+```cpp
+ofxTexturePlane plane;
+plane.setup("filename.png");
+```
+
+Either approach works fine, but if you load the image yourself make sure to disble and re-enable ARB textures around your `ofImage.load`, because the addon [requires normalised texture coordinates](http://openframeworks.cc/documentation/gl/ofTexture/#show_ofEnableArbTex).
+
+```cpp
+ofxTexturePlane plane;
+
+ofDisableArbTex();
+image.load(filename);
+ofEnableArbTex();
+
+plane.setup(image);
+```
+
+Enabling ARB again straight after just reverts back to default OF behavior.
+
 Simple example
 --
 There are three elements to think about: the window, the plane and the texture.

@@ -19,11 +19,11 @@ void ofxTexturePlane::setup(ofImage& image, ofVec2f size, float textureScale, of
 void ofxTexturePlane::setup(string filename, float width, float height, float textureScale, ofxTexturePlaneOffset offset, ofxTexturePlaneMode mode, ofxTexturePlaneWrap wrap) {
     ofDisableArbTex();
     image.load(filename);
+    ofEnableArbTex();
     setup(image, width, height, textureScale, offset, mode, wrap);
 }
 
 void ofxTexturePlane::setup(ofImage& image, float width, float height, float textureScale, ofxTexturePlaneOffset offset, ofxTexturePlaneMode mode, ofxTexturePlaneWrap wrap) {
-    ofDisableArbTex();
     texture = image.getTexture();
 
     if(wrap == TEXTURE_WRAP_REPEAT){
