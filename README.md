@@ -146,4 +146,4 @@ plane.setTextureScale(0.75);
 
 Dependencies
 ------------
-The addon has no dependencies. Tested against [openFrameworks 0.9.3](http://openframeworks.cc/download/).
+The addon has no dependencies. Tested against [openFrameworks 0.10.1](http://openframeworks.cc/download/).
