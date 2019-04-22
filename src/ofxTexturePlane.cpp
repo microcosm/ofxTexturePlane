@@ -179,6 +179,8 @@ void ofxTexturePlane::setTextureOffset(ofxTexturePlaneOffset offset) {
             incrementTextureOffsetY(0.5);
             break;
     }
+
+    flipTexture(TEXTURE_FLIP_HORIZONTAL);
 }
 
 void ofxTexturePlane::setTextureOffset(int offsetIndex) {
